@@ -163,11 +163,14 @@ for g in font.glyphs():
         print(g.width)
 '''
 
+# Manually scoot over a few characters to the left.
 for g in font.glyphs():
     if '002d' in g.glyphname:
-        g.left_side_bearing -= 50
-        g.right_side_bearing += 50
-        print(g.width)
+        g.left_side_bearing  = int(g.left_side_bearing  - 40)
+        g.right_side_bearing = int(g.right_side_bearing + 40)
+    if 'u002a' == g.glyphname:
+        g.left_side_bearing  = int(g.left_side_bearing  - 100)
+        g.right_side_bearing = int(g.right_side_bearing + 100)
 
 
 # If the parameter is positive, include a blank glyph for 'space'.
