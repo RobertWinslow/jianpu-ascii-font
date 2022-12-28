@@ -94,6 +94,35 @@ COLORS = [
     "#5359b5",
     "#9352a8",
 ]
+COLORS_HIGH = [
+    "#8a8489",
+    "#e66980",
+    "#ff9d50",
+    "#f7ce50",
+    "#87d989",
+    "#2dbce2",
+    "#8088e2",
+    "#ce8ce3",
+]
+COLORS_LOW = [
+    "#8a8489",
+    "#87122d",
+    "#c26012",
+    "#a29812",
+    "#176a1e",
+    "#113074",
+    "#2a286f",
+    "#652277",
+]
+
+def chooseColor(digit,top,bottom):
+    if 'u' in top:
+        colors = COLORS_HIGH
+    elif 'd' in bottom:
+        colors = COLORS_LOW
+    else:
+        colors = COLORS
+    return colors[digit]
 
 
 
@@ -119,7 +148,8 @@ def generateFilenames(digit,top,bottom):
     
 
 
-def createComboSVG(digit, topDecorator="", bottomDecorator="", fill="#000"):
+def createComboSVG(digit, topDecorator, bottomDecorator):
+    fill = chooseColor(digit, topDecorator, bottomDecorator)
     svgString = '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 -15 50 150" xmlns="http://www.w3.org/2000/svg">\n'
     svgString += f'<path fill="{fill}" d="{NUMBERPATHSTRINGS[digit]}"/>\n'
     for path in TOPDECORATORPATHSTRINGS[topDecorator]:
@@ -137,10 +167,10 @@ def createComboSVG(digit, topDecorator="", bottomDecorator="", fill="#000"):
 
 for digit in range(1,8):
     for top,bottom in DECORATOR_POSSIBILITIES:
-        createComboSVG(digit, top, bottom, fill=COLORS[digit])
-createComboSVG(0, '', '', COLORS[0])
-createComboSVG(0, '', 'l', COLORS[0])
-createComboSVG(0, '', 'll', COLORS[0])
+        createComboSVG(digit, top, bottom, )
+createComboSVG(0, '', '')
+createComboSVG(0, '', 'l')
+createComboSVG(0, '', 'll')
 
 
 
