@@ -22,7 +22,7 @@ import fontforge
 import os
 
 INPUTFOLDER = 'svg/combined'
-OUTPUTFILENAME = 'JianpuASCII.ttf'
+OUTPUTFILENAME = '../JianpuASCII.ttf'
 PLACEHOLDERGEOMETRYSVG = 'svg/combined/0030.svg'
 
 font = fontforge.font()
