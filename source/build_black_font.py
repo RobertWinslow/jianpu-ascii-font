@@ -95,6 +95,8 @@ for codepoint in missingcodepoints:
     importAndCleanOutlines(PLACEHOLDERGEOMETRYSVG,char)
 
 
+
+
 # Now make the combination characters via FontForge's ligature feature.
 # To be quite honest, I don't fully understand what all this syntax up front is doing.
 # Just treat these next couple of lines as if they are a mystical incantation.
@@ -164,13 +166,20 @@ for g in font.glyphs():
 '''
 
 # Manually scoot over a few characters to the left.
+def xScoot(glyph, dx):
+    glyph.left_side_bearing  = int(glyph.left_side_bearing  + dx)
+    glyph.right_side_bearing = int(glyph.right_side_bearing - dx)
+
 for g in font.glyphs():
-    if '002d' in g.glyphname:
-        g.left_side_bearing  = int(g.left_side_bearing  - 40)
-        g.right_side_bearing = int(g.right_side_bearing + 40)
-    if 'u002a' == g.glyphname:
-        g.left_side_bearing  = int(g.left_side_bearing  - 100)
-        g.right_side_bearing = int(g.right_side_bearing + 100)
+    if 'u002d' == g.glyphname: #-
+        xScoot(g,-40)
+    if 'u002a' == g.glyphname: #*
+        xScoot(g,-100)
+    if 'u0023' == g.glyphname: ##
+        xScoot(g,100)
+    if 'u0062' == g.glyphname: #b
+        xScoot(g,100)
+
 
 
 # If the parameter is positive, include a blank glyph for 'space'.
