@@ -56,7 +56,7 @@ SPACEWIDTH = MONOSPACEWIDTH
 
 def importAndCleanOutlines(outlinefile,glyph):
     #print(outlinefile)
-    glyph.importOutlines(outlinefile, simplify=True, correctdir=False, accuracy=0.01, scale=False)
+    glyph.importOutlines(outlinefile, simplify=False, correctdir=True, accuracy=0.01, scale=False)
     glyph.removeOverlap()
     SCALEFACTOR = GLYPHHEIGHT/SVGHEIGHT
     foregroundlayer = glyph.foreground
@@ -80,19 +80,12 @@ for codepoint, filename in simplecharacters:
     char = font.createChar(int(codepoint,16), 'u'+codepoint)
     importAndCleanOutlines(INPUTFOLDER+'/'+filename,char)
 
-# Manually add 200D (ZWJ), FE0F, and other individual codepoints as glyphs as needed.
-# If a codepoint is not present as a glyph, we can't add it into a combined character.
-# And if geometry isn't added to a glyph, FontForge will discard it.
-# Therefore a placeholder glyph is used. 
-presentcomponents = set([g.glyphname for g in font.glyphs()])
-missingcodepoints = set()
-for codepoints,filename in codetuples:
-    for codepoint in codepoints:
-        if 'u'+codepoint not in presentcomponents:
-            missingcodepoints.add(codepoint)
-for codepoint in missingcodepoints:
-    char = font.createChar(int(codepoint,16), 'u'+codepoint)
-    importAndCleanOutlines(PLACEHOLDERGEOMETRYSVG,char)
+
+# Include a blank glyph for 'space'.
+# For a glyph without geometry to be included in the font, FF requires its width to be manually set.
+# I need to call this manually up here because I have ligatures involving spaces.
+# I also need to call it again down below after adjusting the font width.
+spaceChar = font.createChar(32, 'u0020')
 
 
 
@@ -112,7 +105,13 @@ for codepoints,filename in combocharacters:
     char.addPosSub("mySubtable", components)
     importAndCleanOutlines(INPUTFOLDER+'/'+filename,char)
 
-
+## Manually add some underlined space ligatures
+char = font.createChar(-1, '_'.join(('u0020','u005f','u005f',)))
+char.addPosSub("mySubtable", ('u0020','u005f','u005f',))
+importAndCleanOutlines(INPUTFOLDER+'/'+'005f-005f.svg',char)
+char = font.createChar(-1, '_'.join(('u0020','u005f',)))
+char.addPosSub("mySubtable", ('u0020','u005f',))
+importAndCleanOutlines(INPUTFOLDER+'/'+'005f.svg',char)
 
 
 
@@ -165,7 +164,7 @@ for g in font.glyphs():
         print(g.width)
 '''
 
-# Manually scoot over a few characters to the left.
+# Manually adjust the spacing of a few characters.
 def xScoot(glyph, dx):
     glyph.left_side_bearing  = int(glyph.left_side_bearing  + dx)
     glyph.right_side_bearing = int(glyph.right_side_bearing - dx)
@@ -179,15 +178,8 @@ for g in font.glyphs():
         xScoot(g,100)
     if 'u0062' == g.glyphname: #b
         xScoot(g,100)
-
-
-
-# If the parameter is positive, include a blank glyph for 'space'.
-# For a glyph without geometry to be included in the font, FF requires its width to be manually set.
-# As such, this step must be done after everything else.
-if SPACEWIDTH:
-    spaceChar = font.createChar(32, 'u0020')
-    spaceChar.width = SPACEWIDTH
+    if 'u0020' == g.glyphname: # space
+        g.width = SPACEWIDTH
 
 
 
