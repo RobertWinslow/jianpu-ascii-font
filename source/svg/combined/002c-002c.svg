@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 -20 50 150" xmlns="http://www.w3.org/2000/svg">
-<path fill="#000" d="m 30 95 a 5 5 0 0 1 -5 5 5 5 0 0 1 -5 -5 5 5 0 0 1 5 -5 5 5 0 0 1 5 5 z"/>
-<path fill="#000" d="m 30 110 a 5 5 0 0 1 -5 5 5 5 0 0 1 -5 -5 5 5 0 0 1 5 -5 5 5 0 0 1 5 5 z"/>
-
+<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 50 150" xmlns="http://www.w3.org/2000/svg">
+<ellipse rx="5" ry="5" cx="25" cy="110"/>
+<ellipse rx="5" ry="5" cx="25" cy="125"/>
 </svg>

@@ -30,10 +30,10 @@ NUMBERPATHSTRINGS = [
 
 
 
-LINE1 = "m -2 90 h 54 v 5 h -54 z"
-LINE2 = "m -2 100 h 54 v 5 h -54 z"
+LINE1 = "m -2 105 h 54 v 5 h -54 z"
+LINE2 = "m -2 115 h 54 v 5 h -54 z"
 def dotString(y):
-    return f"m 30 {y} a 5 5 0 0 1 -5 5 5 5 0 0 1 -5 -5 5 5 0 0 1 5 -5 5 5 0 0 1 5 5 z"
+    return f"m 30 {y+15} a 5 5 0 0 1 -5 5 5 5 0 0 1 -5 -5 5 5 0 0 1 5 -5 5 5 0 0 1 5 5 z"
 
 # d is a dot below, u is a dot above, l is a line below
 TOPDECORATORPATHSTRINGS = {
@@ -150,8 +150,8 @@ def generateFilenames(digit,top,bottom):
 
 def createComboSVG(digit, topDecorator, bottomDecorator):
     fill = chooseColor(digit, topDecorator, bottomDecorator)
-    svgString = '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 -15 50 150" xmlns="http://www.w3.org/2000/svg">\n'
-    svgString += f'<path fill="{fill}" d="{NUMBERPATHSTRINGS[digit]}"/>\n'
+    svgString = '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 50 150" xmlns="http://www.w3.org/2000/svg">\n'
+    svgString += f'<path fill="{fill}" d="m0,15 {NUMBERPATHSTRINGS[digit]}"/>\n'
     for path in TOPDECORATORPATHSTRINGS[topDecorator]:
         svgString += f'<path fill="{fill}" d="{path}"/>\n'
     for path in BOTTOMDECORATORPATHSTRINGS[bottomDecorator]:
