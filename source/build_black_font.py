@@ -146,6 +146,7 @@ if MONOSPACEWIDTH:
 
 
 # Adjust some of the characters to be twice as wide.
+'''
 def checkForDoubleWide(glyphname):
     if "005f" in g.glyphname:
         return False
@@ -160,7 +161,13 @@ for g in font.glyphs():
         g.left_side_bearing += MONOSPACEWIDTH/2
         g.right_side_bearing += MONOSPACEWIDTH/2
         print(g.width)
+'''
 
+for g in font.glyphs():
+    if '002d' in g.glyphname:
+        g.left_side_bearing -= 50
+        g.right_side_bearing += 50
+        print(g.width)
 
 
 # If the parameter is positive, include a blank glyph for 'space'.
