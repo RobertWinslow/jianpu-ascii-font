@@ -45,8 +45,8 @@ MONOSPACEWIDTH = 400
 # Set it to 0 or None to allow characters to be extra wide.
 # If MAXWIDTH is unset, but MONOSPACEWIDTH is set, then some glyphs may have contours outside of their bounding box.
 MAXWIDTH = 0
-DOUBLEWIDE_CODEPOINTS = ['0030','0031','0032','0033','0034','0035','0036','0037']
-
+# If the following parameter is set to a positive integer, a blank 'space' character is included in the font.
+SPACEWIDTH = MONOSPACEWIDTH
 
 
 
@@ -145,8 +145,30 @@ if MONOSPACEWIDTH:
         g.right_side_bearing = bearing
 
 
+# Adjust some of the characters to be twice as wide.
+def checkForDoubleWide(glyphname):
+    if "005f" in g.glyphname:
+        return False
+    for digitCode in ['0030','0031','0032','0033','0034','0035','0036','0037','002d']:
+        if digitCode in glyphname:
+            return True
+    return False
+
+for g in font.glyphs():
+    #print(g.glyphname)
+    if checkForDoubleWide(g.glyphname):
+        g.left_side_bearing += MONOSPACEWIDTH/2
+        g.right_side_bearing += MONOSPACEWIDTH/2
+        print(g.width)
 
 
+
+# If the parameter is positive, include a blank glyph for 'space'.
+# For a glyph without geometry to be included in the font, FF requires its width to be manually set.
+# As such, this step must be done after everything else.
+if SPACEWIDTH:
+    spaceChar = font.createChar(32, 'u0020')
+    spaceChar.width = SPACEWIDTH
 
 
 
