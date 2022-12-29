@@ -133,8 +133,8 @@ char.addPosSub("mySubtable", ('colon','bar','colon',))
 char.addPosSub("mySubtable", ('colon','bar','bar','colon',))
 
 
-
-GAPBETWEENDOTS = 125
+# parameters for octave dot spacing
+GAPBETWEENDOTS = 150
 DOTSHIFTFROMLINE = 80
 
 # Here I create some ligatures for each digit. 
