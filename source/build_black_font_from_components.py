@@ -128,9 +128,13 @@ char.addReference('doubleUnderscore', (1,0,0,1, -MONOSPACEWIDTH ,0))
 char.addPosSub("mySubtable", ('slash','slash',))
 char.width = 0
 
+GAPBETWEENDOTS = 125
+DOTSHIFTFROMLINE = 80
 
-
-for digit in ['1','2','3','4','5','6','7',]:
+# Here I create some ligatures for each digit. 
+# 0 and x aren't supposed to have the full set. (You can't shift a rest by an octave.) 
+# But there's not harm in creating those ligatures, and it does simplify the code to do so.
+for digit in ['0','1','2','3','4','5','6','7','x','X']: 
     # up an octave
     char = font.createChar(-1, f'{digit}up')
     char.addReference(digit)
@@ -141,7 +145,7 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = font.createChar(-1, f'{digit}upTwo')
     char.addReference(digit)
     char.addReference('prime', (1,0,0,1,0,0))
-    char.addReference('prime', (1,0,0,1,0,100))
+    char.addReference('prime', (1,0,0,1,0,GAPBETWEENDOTS))
     char.addPosSub("mySubtable", (digit,'prime','prime',))
     char.width = MONOSPACEWIDTH
     # down one octave
@@ -154,14 +158,14 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = font.createChar(-1, f'{digit}downTwo')
     char.addReference(digit)
     char.addReference('comma', (1,0,0,1,0,0))
-    char.addReference('comma', (1,0,0,1,0,-100))
+    char.addReference('comma', (1,0,0,1,0,-GAPBETWEENDOTS))
     char.addPosSub("mySubtable", (digit,'comma','comma',))
     char.width = MONOSPACEWIDTH
     # down one octave with underline for a quaver
     char = font.createChar(-1, f'{digit}downQuaver')
     char.addReference(digit)
     char.addReference('underscore', (1,0,0,1,0,0))
-    char.addReference('comma', (1,0,0,1,0,-75))
+    char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
     char.addPosSub("mySubtable", ('underscore',digit,'comma',))
     char.addPosSub("mySubtable", ('q',digit,'comma',))
     char.addPosSub("mySubtable", (digit,'comma','slash',))
@@ -171,8 +175,8 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = font.createChar(-1, f'{digit}downTwoQuaver')
     char.addReference(digit)
     char.addReference('underscore', (1,0,0,1,0,0))
-    char.addReference('comma', (1,0,0,1,0,-75))
-    char.addReference('comma', (1,0,0,1,0,-175))
+    char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
+    char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE-GAPBETWEENDOTS))
     char.addPosSub("mySubtable", ('q',digit,'comma','comma',))
     char.addPosSub("mySubtable", ('underscore',digit,'comma','comma',))
     char.addPosSub("mySubtable", (digit,'comma','comma','slash',))
@@ -183,7 +187,7 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = font.createChar(-1, f'{digit}downSemiquaver')
     char.addReference(digit)
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
-    char.addReference('comma', (1,0,0,1,0,-150))
+    char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
     char.addPosSub("mySubtable", ('doubleUnderscore',digit,'comma',))
     char.addPosSub("mySubtable", ('underscore','underscore',digit,'comma',))
     char.addPosSub("mySubtable", (digit,'comma','slash','slash',))
@@ -194,8 +198,8 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = font.createChar(-1, f'{digit}downTwoSemiquaver')
     char.addReference(digit)
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
-    char.addReference('comma', (1,0,0,1,0,-150))
-    char.addReference('comma', (1,0,0,1,0,-250))
+    char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
+    char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE-GAPBETWEENDOTS))
     char.addPosSub("mySubtable", ('doubleUnderscore',digit,'comma','comma',))
     char.addPosSub("mySubtable", ('underscore','underscore',digit,'comma','comma',))
     char.addPosSub("mySubtable", (digit,'comma','comma','slash','slash',))
