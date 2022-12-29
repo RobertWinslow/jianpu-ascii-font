@@ -82,6 +82,7 @@ createBasicCharacter('007c','bar','bar')
 createBasicCharacter('003a','colon','colon')
 createBasicCharacter('005f','underscore','underscore')
 createBasicCharacter('0071','q','underscore') # alternate underline. q short for 'quaver', meaning an eighth note
+createBasicCharacter('002f','slash','underscore') # appended slash indicates an underline in tomato jianpu
 spaceChar = font.createChar(32, 'space')
 spaceChar.width = SPACEWIDTH
 
@@ -109,18 +110,6 @@ char.addReference('cdot', (1,0,0,1,-50,0))
 char.addReference('cdot', (1,0,0,1,180,0))
 char.addPosSub("mySubtable", ('cdot','cdot',))
 char.addPosSub("mySubtable", ('period','period',))
-
-## Slash / for an underline *after* the character
-char = font.createChar(int('002f',16), 'slash')
-char.addReference('underscore', (1,0,0,1, 0,0)) # -MONOSPACEWIDTH in penultimate value to make it go under the character to the left.
-
-## And a doubleslash likewise.
-## This is tricky because I want to be able to type a single _ by itself, but also type a __ by itself.
-## I've compromised by only adding the ligature for the slash version.
-## TODO: Mabye I should add ligatures via spaces? Or include = as a way to type a double line?
-char = font.createChar(-1, 'doubleSlash')
-char.addReference('doubleUnderscore', (1,0,0,1, 0,0)) 
-char.addPosSub("mySubtable", ('slash','slash',))
 
 ## Double bar ||
 char = font.createChar(-1, 'doubleBar')
@@ -152,7 +141,7 @@ DOTSHIFTFROMLINE = 80
 # Some of these ligatures could be ignored in favor of zero-width trickery.
 # But I'm just not personally a fan of setting a character to be zero width.
 # I like how the cursor is rendered part-way through the glyph when in the middle of a ligature sequence.
-for digit in ['1','2','3','4','5','6','7',]+['X','x','0','b','hash',]:
+for digit in ['1','2','3','4','5','6','7',]+['X','x','0','b','hash','space']:
     # Single underline for quaver
     char = font.createChar(-1, f'{digit}_Quaver')
     char.addReference(digit)
