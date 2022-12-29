@@ -21,7 +21,7 @@ And more complex musical notation may require more specialized typesetting softw
 
 - [Simp Erhu](https://simperhu.weebly.com/) is a plugin for Microsoft Word with many specialized symbols for use when playing the erhu. 
 - [jianpu-ly](https://github.com/ssb22/jianpu-ly) has its own convention for notating Jianpu in ASCII, but doesn't display the notation itself. Instead it converts the notation into a form which [Lilypond](https://lilypond.org/) can render.
-
+- [Fanqie Jianpu](http://zhipu.lezhi99.com/Zhipu-index.html) is a web interface for typing Jianpu, and can render the results as vectors or pdfs.
 
 
 
@@ -31,7 +31,9 @@ http://anuccme.com/jianpu
 https://github.com/felixhao28/react-jianpu Uses . for sidedot
 http://www.jianpu.cn/
 https://github.com/journey-ad/jianpu  Very bizarre notation. I don't think I will be trying to copy this.
-
+http://www.jianpu99.net/    Same Fanqie Jianpu in the list above.
+https://github.com/lzh9102/musicxml_to_jianpu
+http://doc.lezhi99.com/zhipu#152  Fanqie uses slashes for underlining.
 -->
 
 
