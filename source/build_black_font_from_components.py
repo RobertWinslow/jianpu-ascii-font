@@ -32,20 +32,22 @@ font.version = "0.1"
 
 # The following variables are for scaling the imported outlines.
 SVGHEIGHT = 150 # units of height of source svg viewbox.
-GLYPHHEIGHT = 1200 # font units, default = 1000
-PORTIONABOVEBASELINE = 0.6 # default is 0.8
+GLYPHHEIGHT = 1500 # font units, default = 1000
+#PORTIONABOVEBASELINE = 0.633333 # default is 0.8
+UNITSABOVEBASELINE = 950
 # The following parameter sets the spacing between characters. 
 # It is made redundant by MONOSPACEWIDTH if that parameter is set.
 SEPARATION = 0
 # If the following parameter is set to a positive integer, all characters are set to that width.
 # Set it to 0 or None to make the font non-monospaced.
-MONOSPACEWIDTH = 400
+MONOSPACEWIDTH = 600
 # If the following parameter is set to a positive integer, all characters wider than this are scaled down.
 # Set it to 0 or None to allow characters to be extra wide.
 # If MAXWIDTH is unset, but MONOSPACEWIDTH is set, then some glyphs may have contours outside of their bounding box.
 MAXWIDTH = 0
 # If the following parameter is set to a positive integer, a blank 'space' character is included in the font.
 SPACEWIDTH = MONOSPACEWIDTH
+
 
 #%% SECTION TWO A - Define function for importing outlines.
 
@@ -59,8 +61,9 @@ def importAndCleanOutlines(outlinefile,glyph):
         for point in contour:
             point.transform((1,0,0,1,0,-800)) # Translate top of glyph down to baseline.
             point.transform((SCALEFACTOR,0,0,SCALEFACTOR,0,0)) # Scale up. Top of glyph will remain at baseline. 
-            point.transform((1,0,0,1,0,PORTIONABOVEBASELINE*GLYPHHEIGHT)) # translate up to desired cap height
+            point.transform((1,0,0,1,0,UNITSABOVEBASELINE)) # translate up to desired cap height
     glyph.setLayer(foregroundlayer,'Fore')
+
 
 
 #%% SECTION TWO B - Import basic characters.
@@ -210,8 +213,6 @@ for digit in ['1','2','3','4','5','6','7',]:
 # TODO: Diacritics and anchor points might be handy here.
 
 
-
-
 #%% SECTION THREE - Adjust some of the font's global properties.
 #for g in font.glyphs():
 #        g.width = MONOSPACEWIDTH
@@ -219,7 +220,6 @@ for digit in ['1','2','3','4','5','6','7',]:
 #%% FINALLY - Generate the font
 print("Generating black font to", OUTPUTFILENAME)
 font.generate(OUTPUTFILENAME)
-
 
 
 
