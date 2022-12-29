@@ -113,8 +113,8 @@ char.addReference('underscore', (1,0,0,1,0,-80))
 
 ## Double dot
 char = font.createChar(-1, 'doubleDot')
-char.addReference('cdot', (1,0,0,1,-100,0)) 
-char.addReference('cdot', (1,0,0,1,60,0))
+char.addReference('cdot', (1,0,0,1,-50,0)) 
+char.addReference('cdot', (1,0,0,1,180,0))
 char.addPosSub("mySubtable", ('cdot','cdot',))
 char.addPosSub("mySubtable", ('period','period',))
 
