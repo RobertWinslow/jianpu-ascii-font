@@ -61,6 +61,7 @@ def importAndCleanOutlines(outlinefile,glyph):
 def createBasicCharacter(codepoint, glyphname, vectorfilename,):
     char = font.createChar(int(codepoint,16), glyphname)
     importAndCleanOutlines(f'{INPUTFOLDER}/{vectorfilename}.svg',char)
+    return char
 createBasicCharacter('0030','0','0')
 createBasicCharacter('0031','1','1')
 createBasicCharacter('0032','2','2')
@@ -83,6 +84,7 @@ createBasicCharacter('003a','colon','colon')
 createBasicCharacter('005f','underscore','underscore')
 createBasicCharacter('0071','q','underscore') # alternate underline. q short for 'quaver', meaning an eighth note
 createBasicCharacter('002f','slash','underscore') # appended slash indicates an underline in tomato jianpu
+createBasicCharacter('0073','doubleUnderscore','doubleUnderscore') # This is mapped to the letter s, for "semiquaver".
 spaceChar = font.createChar(32, 'space')
 spaceChar.width = SPACEWIDTH
 
@@ -98,16 +100,9 @@ font.addLookup('myLookup','gsub_ligature',None,(("liga",(('DFLT',("dflt")),)),))
 font.addLookupSubtable("myLookup", "mySubtable")
 
 # First, some special cases
-## The semiquaver / double underline. Base codepoint is the letter s, with '__' as a ligature mapped to it as well.
-char = font.createChar(int('0073',16), 'doubleUnderscore')
-char.addReference('underscore', (1,0,0,1,0,0)) # -MONOSPACEWIDTH in penultimate value to make it go under the character to the left.
-char.addReference('underscore', (1,0,0,1,0,-80))
-#char.addPosSub("mySubtable", ('underscore','underscore',))
-
 ## Double dot
 char = font.createChar(-1, 'doubleDot')
-char.addReference('cdot', (1,0,0,1,-50,0)) 
-char.addReference('cdot', (1,0,0,1,180,0))
+importAndCleanOutlines(f'{INPUTFOLDER}/doubleDot.svg',char)
 char.addPosSub("mySubtable", ('cdot','cdot',))
 char.addPosSub("mySubtable", ('period','period',))
 
