@@ -79,6 +79,7 @@ createBasicCharacter('0062','b','flat')
 createBasicCharacter('0023','hash','sharp')
 createBasicCharacter('002d','minus','dash')
 createBasicCharacter('007c','bar','bar')
+createBasicCharacter('003a','colon','colon')
 createBasicCharacter('005f','underscore','underscore')
 createBasicCharacter('0071','q','underscore') # alternate underline. q short for 'quaver', meaning an eighth note
 spaceChar = font.createChar(32, 'space')
@@ -120,6 +121,27 @@ char.addReference('underscore', (1,0,0,1, 0,0)) # -MONOSPACEWIDTH in penultimate
 char = font.createChar(-1, 'doubleSlash')
 char.addReference('doubleUnderscore', (1,0,0,1, 0,0)) 
 char.addPosSub("mySubtable", ('slash','slash',))
+
+## Double bar ||
+char = font.createChar(-1, 'doubleBar')
+importAndCleanOutlines(f'{INPUTFOLDER}/doubleBar.svg',char)
+char.addPosSub("mySubtable", ('bar','bar',))
+## Repeat signs
+# :|
+char = font.createChar(-1, 'repeatRight')
+importAndCleanOutlines(f'{INPUTFOLDER}/repeatRight.svg',char)
+char.addPosSub("mySubtable", ('colon','bar',))
+char.addPosSub("mySubtable", ('colon','bar','bar',))
+# |:
+char = font.createChar(-1, 'repeatLeft')
+importAndCleanOutlines(f'{INPUTFOLDER}/repeatLeft.svg',char)
+char.addPosSub("mySubtable", ('bar','colon',))
+char.addPosSub("mySubtable", ('bar','bar','colon',))
+# :|:
+char = font.createChar(-1, 'repeatBoth')
+importAndCleanOutlines(f'{INPUTFOLDER}/repeatBoth.svg',char)
+char.addPosSub("mySubtable", ('colon','bar','colon',))
+char.addPosSub("mySubtable", ('colon','bar','bar','colon',))
 
 
 
