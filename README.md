@@ -12,6 +12,21 @@ This is a work in progress, but the font file is at least partially functional.
 
 
 
+## What software does this work in?
+
+I've verified this font renders correctly in the following software:
+
+- Firefox
+- Chromium Browsers (Edge, Brave, Chrome, etc.)
+- GIMP
+- Inkscape
+- Libre Office 
+
+But it doesn't seem to work in certain versions of Microsoft Word.
+
+
+
+
 ## Other Jianpu Typesetting systems.
 
 The advantage of using this font is that the resulting musical notation can be displayed and modified in almost any software.
@@ -22,7 +37,6 @@ And more complex musical notation may require more specialized typesetting softw
 - [Simp Erhu](https://simperhu.weebly.com/) is a plugin for Microsoft Word with many specialized symbols for use when playing the erhu. 
 - [jianpu-ly](https://github.com/ssb22/jianpu-ly) has its own convention for notating Jianpu in ASCII, but doesn't display the notation itself. Instead it converts the notation into a form which [Lilypond](https://lilypond.org/) can render.
 - [Fanqie Jianpu](http://zhipu.lezhi99.com/Zhipu-index.html) is a web interface for typing Jianpu, and can render the results as vectors or pdfs.
-
 
 
 
