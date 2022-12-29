@@ -58,10 +58,9 @@ def importAndCleanOutlines(outlinefile,glyph):
 
 
 #%% SECTION TWO B - Import basic characters.
-def createBasicCharacter(codepoint, glyphname, vectorfilename, width = MONOSPACEWIDTH):
+def createBasicCharacter(codepoint, glyphname, vectorfilename,):
     char = font.createChar(int(codepoint,16), glyphname)
     importAndCleanOutlines(f'{INPUTFOLDER}/{vectorfilename}.svg',char)
-    char.width = width
 createBasicCharacter('0030','0','0')
 createBasicCharacter('0031','1','1')
 createBasicCharacter('0032','2','2')
@@ -80,8 +79,8 @@ createBasicCharacter('0062','b','flat')
 createBasicCharacter('0023','hash','sharp')
 createBasicCharacter('002d','minus','dash')
 createBasicCharacter('007c','bar','bar')
-createBasicCharacter('005f','underscore','underscore', width=0)
-createBasicCharacter('0071','q','underscore', width=0) # alternate underline. q short for 'quaver', meaning an eighth note
+createBasicCharacter('005f','underscore','underscore')
+createBasicCharacter('0071','q','underscore') # alternate underline. q short for 'quaver', meaning an eighth note
 spaceChar = font.createChar(32, 'space')
 spaceChar.width = SPACEWIDTH
 
@@ -121,6 +120,7 @@ char.addReference('underscore', (1,0,0,1, 0,0)) # -MONOSPACEWIDTH in penultimate
 char = font.createChar(-1, 'doubleSlash')
 char.addReference('doubleUnderscore', (1,0,0,1, 0,0)) 
 char.addPosSub("mySubtable", ('slash','slash',))
+
 
 
 GAPBETWEENDOTS = 125
