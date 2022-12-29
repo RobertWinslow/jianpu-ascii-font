@@ -77,6 +77,8 @@ createBasicCharacter('0034','4','4')
 createBasicCharacter('0035','5','5')
 createBasicCharacter('0036','6','6')
 createBasicCharacter('0037','7','7')
+createBasicCharacter('0078','x','x')
+createBasicCharacter('0058','X','x')
 createBasicCharacter('002c','comma','downoctave')
 createBasicCharacter('0027','prime','upoctave')
 createBasicCharacter('002e','period','sidedot')
@@ -141,11 +143,28 @@ for digit in ['1','2','3','4','5','6','7',]:
     char.addReference('comma', (1,0,0,1,0,-100))
     char.addPosSub("mySubtable", (digit,'comma','comma',))
     char.width = MONOSPACEWIDTH
+    # down one octave with underline for a quaver
+    char = font.createChar(-1, f'{digit}downQuaver')
+    char.addReference(digit)
+    char.addReference('underscore', (1,0,0,1,0,0))
+    char.addReference('comma', (1,0,0,1,0,-75))
+    char.addPosSub("mySubtable", ('underscore',digit,'comma',))
+    char.addPosSub("mySubtable", ('q',digit,'comma',))
+    char.width = MONOSPACEWIDTH
+    # down two octaves with underline for a quaver
+    char = font.createChar(-1, f'{digit}downTwoQuaver')
+    char.addReference(digit)
+    char.addReference('underscore', (1,0,0,1,0,0))
+    char.addReference('comma', (1,0,0,1,0,-75))
+    char.addReference('comma', (1,0,0,1,0,-175))
+    char.addPosSub("mySubtable", ('q',digit,'comma','comma',))
+    char.addPosSub("mySubtable", ('underscore',digit,'comma','comma',))
+    char.width = MONOSPACEWIDTH
     # down one octave with double underlines for a semiquaver
     char = font.createChar(-1, f'{digit}downSemiquaver')
     char.addReference(digit)
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
-    char.addReference('comma', (1,0,0,1,0,-80))
+    char.addReference('comma', (1,0,0,1,0,-150))
     char.addPosSub("mySubtable", ('doubleUnderscore',digit,'comma',))
     char.addPosSub("mySubtable", ('underscore','underscore',digit,'comma',))
     char.width = MONOSPACEWIDTH
@@ -153,8 +172,8 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = font.createChar(-1, f'{digit}downTwoSemiquaver')
     char.addReference(digit)
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
-    char.addReference('comma', (1,0,0,1,0,-80))
-    char.addReference('comma', (1,0,0,1,0,-180))
+    char.addReference('comma', (1,0,0,1,0,-150))
+    char.addReference('comma', (1,0,0,1,0,-250))
     char.addPosSub("mySubtable", ('doubleUnderscore',digit,'comma','comma',))
     char.addPosSub("mySubtable", ('underscore','underscore',digit,'comma','comma',))
     char.width = MONOSPACEWIDTH
