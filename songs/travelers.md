@@ -9,8 +9,8 @@
 }
 .jianpublock {
     font-family: Jianpu;
-    line-height: 1.5;
-    font-size: 20px;
+    line-height: 1.5 !important;
+    font-size: 20px !important;
 }
 </style>
 
@@ -29,7 +29,8 @@ Piano section with some crazy polyrhythm going on:
 </pre>
 
 
-BANJO AND SLIDE WHISTLE sections:
+Banjo and slide whistle sections:
+
 <pre class="jianpublock" rows="2" style="width: 100%; min-width: 30em;" spellcheck="False">
 |1 5 7. q5q1'q7q6q5q6q75 |2 5 7. q5q1'q7q6q5q6q7q2'q7|3 5 7. q5q1'q7q6q5q6q75 |2 5 7. q5q1'q7q6q5q6q7q2'q7:||
 </pre>
