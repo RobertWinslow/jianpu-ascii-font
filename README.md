@@ -75,6 +75,17 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 ## Example
 
+<style>
+@font-face {
+    font-family: Jianpu;
+    src: url("../JianpuASCII.ttf ");
+}
+pre{
+    font-family: Jianpu;
+    line-height: 1.5 !important;
+    font-size: 30px !important;
+}
+</style>
 
 ```
 5 |1' - q3'q1'| 3' - 2' |1' - 6|5 - 5|1' - q3'q1'|3' - q2'q3'|5' -
@@ -131,6 +142,7 @@ https://www.opusonemusic.net/Helpfiles/IPad/pages/CypherNotation.html
 
 <!--https://graphicdesign.stackexchange.com/questions/146896/free-fat-numeral-font-as-used-in-sheet-music-time-signatures/146902#146902
 https://abcnotation.com/examples#accidentals  In ABC, flats are represented by prepending an underscore.
+https://theocarinanetwork.com/decoding-jianpu-notation-t18028.html
 -->
 
 
