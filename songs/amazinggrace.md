@@ -10,12 +10,12 @@
 }
 .jianpublock {
     font-family: Jianpu;
-    line-height: 1.5;
-    font-size: 30px;
+    line-height: 1.5 !important;
+    font-size: 30px !important;
 }
 </style>
 
-<textarea class="jianpublock" rows="10" style="width: 100%; min-width: 30em;" spellcheck="False">
+<pre class="jianpublock" rows="10" style="width: 100%; min-width: 30em;" spellcheck="False">
 5 |1' - q3'q1'| 3' - 2' |1' - 6|5 - 5|1' - q3'q1'|3' - q2'q3'|5' -
 3 |3 - 5 |b7 -b7 |4 - 4|3 - 3|3 - 5 |1' - 5 |5 -
 5, |1 - 1 | 1 - 1 |6, - 6,|1 - 1|5, - 5, |1 - 1 |7, -
@@ -25,7 +25,4 @@
 5 |3 - 5 |b7 -b7 |4 - 4|3 - 3|3 - 5 |1' - 4'|3 - ||
 7, |5, - 1 | 1 - 1 |6, - 6,|1 - 1|5, - 5, |1 - 7,|1 - ||
 5, |1, - 5, | 1, - 5, |4, - 4,|1, - 5,|1, - 1, |5, - 5,|1, - ||
-
-
-
-</textarea>
+</pre>
