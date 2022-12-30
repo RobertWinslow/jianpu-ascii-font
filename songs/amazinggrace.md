@@ -15,7 +15,7 @@
 }
 </style>
 
-<textarea class="jianpublock">
+<textarea class="jianpublock" rows="10" style="width: 100%; min-width: 30em;" spellcheck="False">
 5 |1' - q3'q1'| 3' - 2' |1' - 6|5 - 5|1' - q3'q1'|3' - q2'q3'|5' -
 3 |3 - 5 |b7 -b7 |4 - 4|3 - 3|3 - 5 |1' - 5 |5 -
  
