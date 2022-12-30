@@ -1,14 +1,11 @@
 # Jianpu Ascii Font
 
-This is a font which uses ascii ligatures to display simplified Jianpu 简谱 musical notation. 简谱
+This is a font which uses ascii ligatures to display simplified Jianpu 简谱 musical notation.
 
-This is a work in progress, but the font file is at least partially functional.
-
-- Use 0 for a rest
-- Use digits 1-7 for notes
-- Append `,` to a digit indicate a lower octave.
-- Append `'` to indicate a higher octave.
-- Append `_` to indicate a shorter note.
+<!--
+TODO: Example with image.
+TODO: Test page link in intro.
+-->
 
 
 
@@ -26,6 +23,49 @@ To get it working properly in Microsoft Word, two changes have to be made:
 
 
 
+## Syntax
+
+The [wikipedia page for jianpu notation](https://en.wikipedia.org/wiki/Numbered_musical_notation) 
+is well-written and describes how the notation works. 
+Below is a list of jianpu features implemented in this font and how to use them.
+
+### Basics
+
+- Use digits `1234567` to represent the notes of the diatonic scale. 
+- Dots above the digit represent going up one octave. Type apostrophes after the digit to place dots above: `1' 1''`
+- Dots below the digit represent going down one octave. Type commas after the digit to place dots below: `1,, 1,`
+- Chords are indicated by typing multiple lines. Notes in the same column are played simultaneously.
+- In this font, spaces are whitespace characters, and have no inherent musical meaning, but are important for making sure chords line up properly<!-- and otherwise making things look nice-->. 
+
+
+### Timing
+- Underlining a note halves its length to an eighth note. You can underline a note either by typing a `q` (for 'quaver') *before* the note, or by typing a slash `/` *after* the note. Both `s1` and `1/` indicate an eight note C, and display the same.
+- A double underline halves the length again to a sixteenth note. You can double-underline a note either by typing an `s` (for 'semiquaver') before the note, or by typing two slashes `//` after the note.
+  - If using `/`s together with octave shifts, the order of the modifier characters doesn't matter. They all just come after the digit.
+
+- A note is extended by a quarter note (crotchet) by placing a dash `-` after it. Thus a whole note can be written `1 - - -`.
+- A note is extended by half its length by placing a dot after it. These dots can be typed as `.` or `*`. Two dots, typed with `..` or `**` indicates that a note is extended by 3/4 of its length.
+- Use `0` for a rest, and `x` for a percussion beat. These follow the same timing rules as notes and can be similarly underlined.
+
+### Other Symbols
+- Flats are typed with `b`, and sharps with `#`. Place these before the notes. These are rendered as seperate characters, and should be placed before the timing prefixes as well. EG `#s4` would be a sixteenth note F sharp. 
+- Bar lines are typed with `|` and `||`
+- Repeat symbols are typed with `||:`, `:||:`, and `:||`
+
+<!--prepending underscores also works for underlines-->
+
+<!--
+- Use `0` for a rest, and `x` for a percussion beat. These follow the same timing rules as notes and can be similarly underlined.o
+
+- Use 0 for a rest
+- Use digits 1-7 for notes
+- Append `,` to a digit indicate a lower octave.
+- Append `'` to indicate a higher octave.
+- Append `_` to indicate a shorter note.-->
+
+
+<!--A digit by itself typically represents a quarter note.-->
+
 
 
 ## Other Jianpu Typesetting systems.
@@ -40,6 +80,13 @@ And more complex musical notation may require more specialized typesetting softw
 - [Fanqie Jianpu](http://zhipu.lezhi99.com/Zhipu-index.html) is a web interface for typing Jianpu, and can export the result as images.
 
 
+## License
+
+This font is released under the SIL Open Font License.
+
+Note that this font is a derivative work of the font with Reserved Font Name 'Source', Copyright © Adobe Systems Incorporated 2010, 2012.
+In particular, it uses the numerals 0123456789 from "Source Code Pro", by Paul D. Hunt, 
+downloaded from Google Fonts here: https://fonts.google.com/specimen/Source+Code+Pro
 
 <!--
 http://anuccme.com/jianpu
@@ -49,7 +96,10 @@ https://github.com/journey-ad/jianpu  Very bizarre notation. I don't think I wil
 http://www.jianpu99.net/    Same Fanqie Jianpu in the list above.
 https://github.com/lzh9102/musicxml_to_jianpu
 http://doc.lezhi99.com/zhipu#152  Fanqie uses slashes for underlining.
+https://www.opusonemusic.net/Helpfiles/IPad/pages/CypherNotation.html
 -->
 
 
-<!--https://graphicdesign.stackexchange.com/questions/146896/free-fat-numeral-font-as-used-in-sheet-music-time-signatures/146902#146902-->
+<!--https://graphicdesign.stackexchange.com/questions/146896/free-fat-numeral-font-as-used-in-sheet-music-time-signatures/146902#146902
+https://abcnotation.com/examples#accidentals  In ABC, flats are represented by prepending an underscore.
+-->
