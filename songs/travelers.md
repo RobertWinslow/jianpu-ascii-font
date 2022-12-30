@@ -21,10 +21,10 @@ This score is copied from [this post on Musescore](https://musescore.com/user/28
 Piano section with some crazy polyrhythm going on:
 
 <pre class="jianpublock" rows="6" style="width: 100%; min-width: 30em;" spellcheck="False">
-|5. 2. 5. 2. 5 6 |5. 4. 5. 4. 1' 7 |5. 2. 7,. 5. 1 7, |6. 7. 6. 7. q6q7q2'q7|
+|5. 2. 5. 2. 5 6 |5.#4. 5.#4. 1' 7 |5. 2. 7,. 5. 1 7, |6. 7. 6. 7. q6q7q2'q7|
 |1, 1, 1, 1, 1, 1, 1, 1, |2, 2, 2, 2, 2, 2, 2, 2, |3, 3, 3, 3, 3, 3, 3, 3, |2, 2, 2, 2, 2, 2, 2, 2, |
 
-|5. 2. 5. 2. 5 6 |5. 6. 5. 6. 5 4 |5. 2. 7,. 5. 1 7, |6. 7. 6. 7. q6q7q2'q7:|
+|5. 2. 5. 2. 5 6 |5. 6. 5. 6. 5#4 |5. 2. 7,. 5. 1 7, |6. 7. 6. 7. q6q7q2'q7:|
 |1, 1, 1, 1, 1, 1, 1, 1, |2, 2, 2, 2, 2, 2, 2, 2, |3, 3, 3, 3, 3, 3, 3, 3, |2, 2, 2, 2, 2, 2, 2, 2, :|
 </pre>
 
