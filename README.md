@@ -31,26 +31,31 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 ### Basics
 
-- Use digits `1234567` to represent the notes of the diatonic scale. 
-- Dots above the digit represent going up one octave. Type apostrophes after the digit to place dots above: `1' 1''`
-- Dots below the digit represent going down one octave. Type commas after the digit to place dots below: `1,, 1,`
-- Chords are indicated by typing multiple lines. Notes in the same column are played simultaneously.
-- In this font, spaces are whitespace characters, and have no inherent musical meaning, but are important for making sure chords line up properly<!-- and otherwise making things look nice-->. 
+- Use digits `1234567` for notes.
+- Use `0` for a rest.
+- Append `'` to a note to indicate a higher octave by placing a dot above it. `1' 1''`
+- Append `,` to a note to indicate a lower octave by placing a dot below it. `1,, 1,,`
+- Chords are indicated by vertically stacking notes. To do this, you'll need to type multiple lines and may need to use spaces ` ` to make sure things properly line up.
 
 
 ### Timing
-- Underlining a note halves its length to an eighth note. You can underline a note either by typing a `q` (for 'quaver') *before* the note, or by typing a slash `/` *after* the note. Both `s1` and `1/` indicate an eight note C, and display the same.
-- A double underline halves the length again to a sixteenth note. You can double-underline a note either by typing an `s` (for 'semiquaver') before the note, or by typing two slashes `//` after the note.
-  - If using `/`s together with octave shifts, the order of the modifier characters doesn't matter. They all just come after the digit.
+- Underline a note either with a `q` (for 'quaver') *before* the note, or a slash `/` *after* it. This halves its length to an eighth note.
+- Double-underline a note with an `s` (for 'quaver') *before* it, or two slashes `//` *after* it. This halves the length again to a sixteenth note.
+    - If using `/`s together with octave shifts, the order of the modifier characters doesn't matter. They all just come after the digit.
+    - Note that the symbols `0`, `x`, `b`, `#`, and ` ` (space) can be underlined in the same way notes can. For rests `0` and beats `#`, this conveys timing information. For accidentals and whitespace, it's purely aesthetic.
 
-- A note is extended by a quarter note (crotchet) by placing a dash `-` after it. Thus a whole note can be written `1 - - -`.
-- A note is extended by half its length by placing a dot after it. These dots can be typed as `.` or `*`. Two dots, typed with `..` or `**` indicates that a note is extended by 3/4 of its length.
-- Use `0` for a rest, and `x` for a percussion beat. These follow the same timing rules as notes and can be similarly underlined.
+- Place a dash `-` after after a note to extend its length by one quarter note. Thus a whole note can be written `1 - - -`.
+- Place a dot, with `.` or `*`, to extend a note by half its length. (Two dots means that a note is extended by 3/4 of its length.)
+
 
 ### Other Symbols
-- Flats are typed with `b`, and sharps with `#`. Place these before the notes. These are rendered as seperate characters, and should be placed before the timing prefixes as well. EG `#s4` would be a sixteenth note F sharp. 
+- Flats are typed with `b`, and sharps with `#`. Place these before the notes. 
+    - Place these before the timing prefixes as well. EG `#s4` for a sixteenth note F sharp. 
 - Bar lines are typed with `|` and `||`
 - Repeat symbols are typed with `||:`, `:||:`, and `:||`
+- Use `x` for a percussion beat.
+
+
 
 <!--prepending underscores also works for underlines-->
 
