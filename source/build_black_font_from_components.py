@@ -88,8 +88,6 @@ createBasicCharacter('0073','doubleUnderscore','doubleUnderscore') # This is map
 spaceChar = font.createChar(32, 'space')
 spaceChar.width = SPACEWIDTH
 
-# TODO: symbols for chord types ala Nashville number system?
-
 
 
 #%% SECTION TWO C - Create combination characters with references and ligatures.
