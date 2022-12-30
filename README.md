@@ -73,6 +73,30 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 
 
+## Example
+
+
+```
+5 |1' - q3'q1'| 3' - 2' |1' - 6|5 - 5|1' - q3'q1'|3' - q2'q3'|5' -
+3 |3 - 5 |b7 -b7 |4 - 4|3 - 3|3 - 5 |1' - 5 |5 -
+5, |1 - 1 | 1 - 1 |6, - 6,|1 - 1|5, - 5, |1 - 1 |7, -
+1, |1, - 5, | 1, - 5, |4, - 4,|1, - 5,|1, - 3, |5, -   |5, -
+ 
+2'/3'/|5' - 3'/1'/| 3' - 3'/2'/|1' - 6|5 - 5|1' - 3'/1'/|3' - 2'|1' - ||
+5 |3 - 5 |b7 -b7 |4 - 4|3 - 3|3 - 5 |1' - 4'|3 - ||
+7, |5, - 1 | 1 - 1 |6, - 6,|1 - 1|5, - 5, |1 - 7,|1 - ||
+5, |1, - 5, | 1, - 5, |4, - 4,|1, - 5,|1, - 1, |5, - 5,|1, - ||
+```
+
+
+
+
+
+
+
+
+
+
 ## Other Jianpu Typesetting systems.
 
 The advantage of using this font is that the resulting musical notation can be displayed and modified in almost any software.
@@ -108,3 +132,5 @@ https://www.opusonemusic.net/Helpfiles/IPad/pages/CypherNotation.html
 <!--https://graphicdesign.stackexchange.com/questions/146896/free-fat-numeral-font-as-used-in-sheet-music-time-signatures/146902#146902
 https://abcnotation.com/examples#accidentals  In ABC, flats are represented by prepending an underscore.
 -->
+
+
