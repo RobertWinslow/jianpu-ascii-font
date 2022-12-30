@@ -2,9 +2,12 @@
 
 This is a font which uses ascii ligatures to display simplified Jianpu 简谱 musical notation.
 
+[The font file can can be downloaded from the GitHub repo](https://github.com/RobertWinslow/jianpu-ascii-font/blob/main/JianpuASCII.ttf).
+
 [See here for an example of the font in use](https://robertwinslow.github.io/jianpu-ascii-font/songs/amazinggrace).
 
 <!--
+, and then used in any software that lets the user choose 
 TODO: Example with image.
 -->
 
