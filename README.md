@@ -75,10 +75,14 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 ## Example
 
+The following block of text will just look like a mess if viewed as a README on Github,
+but if you [view the same page with this font applied](https://robertwinslow.github.io/jianpu-ascii-font/#example),
+then you'll see the same [rendition of Amazing Grace as is present on Wikipedia's jianpu article](https://en.wikipedia.org/wiki/Numbered_musical_notation#Examples).
+
 <style>
 @font-face {
     font-family: Jianpu;
-    src: url("../JianpuASCII.ttf ");
+    src: url("JianpuASCII.ttf ");
 }
 pre{
     font-family: Jianpu;
