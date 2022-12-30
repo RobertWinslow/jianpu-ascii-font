@@ -1,6 +1,6 @@
-# Ascii Jianpu
+# Jianpu Ascii Font
 
-A jianpu font which uses ascii ligatures to display simplified musical notation. 简谱
+This is a font which uses ascii ligatures to display simplified Jianpu 简谱 musical notation. 简谱
 
 This is a work in progress, but the font file is at least partially functional.
 
@@ -14,15 +14,16 @@ This is a work in progress, but the font file is at least partially functional.
 
 ## What software does this work in?
 
-I've verified this font renders correctly in the following software:
+This method of rendering Jianpu musical scores relies only on basic font-rendering features,
+and as such should work basically anywhere.
+In my testing, this font renders correctly in the following software with the need for any settings tweaks: All major internet browsers, GIMP, Inkscape, and Libre Office, as well as Notes, Pages, and TextEdit on MacOS.<!--QGIS works too lol-->
 
-- Firefox
-- Chromium Browsers (Edge, Brave, Chrome, etc.)
-- GIMP
-- Inkscape
-- Libre Office 
+The only programs I've found in which this font doesn't work 'right out of the box'
+are Microsoft Office and MS Paint. 
+To get it working properly in Microsoft Word, two changes have to be made:
+- First, ligatures must be turned on in the advanced font options. (Highlight the text and open the dialog with ctrl+d).
+- Secondly, the "smart quotes" feature must be turned off, lest all the `'` characters be replaced with `‘` or `’`. (This option can be found in `File>Options > Proofing > AutoCorrect Options > AutoFormat As You Type`)
 
-But it doesn't seem to work in certain versions of Microsoft Word.
 
 
 
@@ -35,8 +36,8 @@ But of course, there is only so much one can do with font formatting tricks.
 And more complex musical notation may require more specialized typesetting software.
 
 - [Simp Erhu](https://simperhu.weebly.com/) is a plugin for Microsoft Word with many specialized symbols for use when playing the erhu. 
-- [jianpu-ly](https://github.com/ssb22/jianpu-ly) has its own convention for notating Jianpu in ASCII, but doesn't display the notation itself. Instead it converts the notation into a form which [Lilypond](https://lilypond.org/) can render.
-- [Fanqie Jianpu](http://zhipu.lezhi99.com/Zhipu-index.html) is a web interface for typing Jianpu, and can render the results as vectors or pdfs.
+- [jianpu-ly](https://github.com/ssb22/jianpu-ly) has its own convention for notating Jianpu in ASCII, but doesn't render the notation itself. Instead it converts the notation into a form which [Lilypond](https://lilypond.org/) can render.
+- [Fanqie Jianpu](http://zhipu.lezhi99.com/Zhipu-index.html) is a web interface for typing Jianpu, and can export the result as images.
 
 
 
