@@ -4,7 +4,7 @@ This is a font which uses ascii ligatures to display simplified Jianpu 简谱 mu
 
 [The font file can can be downloaded from the GitHub repo](https://github.com/RobertWinslow/jianpu-ascii-font/blob/main/JianpuASCII.ttf).
 
-[See here for an example of the font in use](https://robertwinslow.github.io/jianpu-ascii-font/songs/amazinggrace).
+[See here for an example of the font in use](https://robertwinslow.github.io/jianpu-ascii-font/examples/songs/amazinggrace).
 
 <!--
 , and then used in any software that lets the user choose 
@@ -39,6 +39,11 @@ Below is a list of jianpu features implemented in this font and how to use them.
 - Use `0` for a rest.
 - Append `'` to a note to indicate a higher octave by placing a dot above it. `1' 1''`
 - Append `,` to a note to indicate a lower octave by placing a dot below it. `1,, 1,,`
+
+`1,,2,,3,,4,,5,,6,,7,,1,2,3,4,5,6,7,12345671'2'3'4'5'6'7'1''2''3''4''5''6''7''`
+
+![A scale spanning three octaves, rendered with this font.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuScale.PNG)
+
 - Chords are indicated by vertically stacking notes. To do this, you'll need to type multiple lines and may need to use spaces ` ` to make sure things properly line up.
 
 
@@ -58,6 +63,7 @@ Below is a list of jianpu features implemented in this font and how to use them.
 - Bar lines are typed with `|` and `||`
 - Repeat symbols are typed with `||:`, `:||:`, and `:||`
 - Use `x` for a percussion beat.
+- 
 
 
 
@@ -109,7 +115,7 @@ then you'll see the same [rendition of Amazing Grace as is present on Wikipedia'
 
 There are no scripting tricks here. It's just a font.
 
-And here's [a link to the same example in an editable text box](https://robertwinslow.github.io/jianpu-ascii-font/songs/amazinggrace),
+And here's [a link to the same example in an editable text box](https://robertwinslow.github.io/jianpu-ascii-font/examples/songs/amazinggrace),
 if you'd like to play around with it.
 Note that the first and second lines deliberately use different syntax for the quarter notes.
 
