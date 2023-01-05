@@ -85,6 +85,10 @@ createBasicCharacter('005f','underscore','underscore')
 createBasicCharacter('0071','q','underscore') # alternate underline. q short for 'quaver', meaning an eighth note
 createBasicCharacter('002f','slash','underscore') # appended slash indicates an underline in tomato jianpu
 createBasicCharacter('0073','doubleUnderscore','doubleUnderscore') # This is mapped to the letter s, for "semiquaver".
+createBasicCharacter('005b','tupletLeft','tupletLeft')
+createBasicCharacter('005d','tupletRight','tupletRight')
+createBasicCharacter('0028','slurLeft','slurLeft')
+createBasicCharacter('0029','slurRight','slurRight')
 spaceChar = font.createChar(32, 'space')
 spaceChar.width = SPACEWIDTH
 
