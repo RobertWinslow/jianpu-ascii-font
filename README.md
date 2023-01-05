@@ -40,7 +40,7 @@ Below is a list of jianpu features implemented in this font and how to use them.
 - Append `'` to a note to indicate a higher octave by placing a dot above it. `1' 1''`
 - Append `,` to a note to indicate a lower octave by placing a dot below it. `1,, 1,,`
 
-`1,,2,,3,,4,,5,,6,,7,,1,2,3,4,5,6,7,12345671'2'3'4'5'6'7'1''2''3''4''5''6''7''`
+<pre>1,,2,,3,,4,,5,,6,,7,,1,2,3,4,5,6,7,12345671'2'3'4'5'6'7'1''2''3''4''5''6''7''</pre>
 
 ![A scale spanning three octaves, rendered with this font.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuScale.PNG)
 
@@ -64,6 +64,13 @@ Below is a list of jianpu features implemented in this font and how to use them.
 - Repeat symbols are typed with `||:`, `:||:`, and `:||`
 - Use `x` for a percussion beat.
 - 
+
+<pre>
+ [-]     (-)
+|1/2/1/ 3 4 5|5 - 6 5|
+</pre>
+
+![An illustration of ties and slurs and tuplets.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuTupletsSlurs.PNG)
 
 
 
