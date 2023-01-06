@@ -26,7 +26,7 @@ font = fontforge.font()
 font.familyname = "Jianpu Ascii"
 font.fullname = font.familyname
 font.copyright = "SIL OFL. Created 2022 by Robert Martin Winslow" #eg Copyright (c) 2022 Name
-font.version = "1.0"
+font.version = "1.1"
 
 # The following variables are for scaling the imported outlines.
 SVGHEIGHT = 150 # units of height of source svg viewbox.
