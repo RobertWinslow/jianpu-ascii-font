@@ -37,6 +37,11 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 - Use digits `1234567` for notes.
 - Use `0` for a rest.
+
+<pre>|3345|5432|1123|3220|</pre>
+
+![A quick diddy. Ode to Joy.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuBasic.PNG)
+
 - Append `'` to a note to indicate a higher octave by placing a dot above it. `1' 1''`
 - Append `,` to a note to indicate a lower octave by placing a dot below it. `1,, 1,,`
 
@@ -49,24 +54,36 @@ Below is a list of jianpu features implemented in this font and how to use them.
 ### Timing
 - Underline a note either with a `q` (for 'quaver') *before* the note, or a slash `/` *after* it. This halves its length to an eighth note.
 - Double-underline a note with an `s` (for 'quaver') *before* it, or two slashes `//` *after* it. This halves the length again to a sixteenth note.
-    - If using `/`s together with octave shifts, the order of the modifier characters doesn't matter. They all just come after the digit.
-    - Note that the symbols `0`, `x`, `b`, `#`, and ` ` (space) can be underlined in the same way notes can. For rests `0` and beats `#`, this conveys timing information. For accidentals and whitespace, it's purely aesthetic.
+    - If using `/`s together with octave shifts, the order of the modifier characters doesn't matter. They all just come after the digit. But stylistically, the octave marks come before the slashes, to make things consistent with other notational systems.
+    - Note that the symbols `0`, `x`, `b`, `#` can be underlined in the same way notes can. For rests `0` and beats `x`, this conveys timing information. For accidentals, it's purely aesthetic.
+
+<pre>s3,,s3,s3s3's3''q3,,q3,q3q3'q3''3,,3,33'3'' 3,,//3,//3//3'//3''//3,,/3,/3/3'/3''/3,,3,33'3''</pre>
+
+![The same note with differing octaves and lengths.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuUnderlines.PNG)
+
+
 
 - Place a dash `-` after after a note to extend its length by one quarter note. Thus a whole note can be written `1 - - -`.
-- Place a dot, with `.` or `*`, to extend a note by half its length. (Two dots means that a note is extended by 3/4 of its length.)
+- Place a dot with `.` to extend a note by half its length. (Two dots means that a note is extended by 3/4 of its length.)
 - Chords are indicated by vertically stacking notes. To do this, you'll need to type multiple lines and may need to use spaces ` ` to make sure things properly line up.
 
 <pre>
-|1' - 6|5 - 5|1' - 3'/1'/|
-|4 - 4|3 - 3|3 - 5 |
+|1' - 6|5 - 5|1' - 3'/1'/|5..4//1//2//3/|
+|4 - 4|3 - 3|3 - 5 |5,- 1,  |
 </pre>
 
 ![An illustration of ties and slurs and tuplets.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuChords.PNG)
 
 
 ### Other Symbols
-- Flats are typed with `b`, and sharps with `#`. Place these before the notes. 
-    - Place these before the timing prefixes as well. EG `#s4` for a sixteenth note F sharp. 
+- Flats are typed with `b` or `_`, and sharps with `#` or `^`. Place these before the notes. 
+    - I couldn't decide how big to make the accidentals, and so I split the difference. `b` and `#` are standalone characters, while `_` and `^` combine with notes into a compact ligature.
+    - Place the standalone accidentals before any timing prefixes. EG `#s4` for a sixteenth note F sharp. 
+
+<pre>3#3^3b3_3 3/#/3/^3/b3/_3/</pre>
+
+![An illustration of ties and slurs and tuplets.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuAccident.PNG)
+
 - Bar lines are typed with `|` and `||`
 - Repeat symbols are typed with `||:`, `:||:`, and `:||`
 - Use `x` for a percussion beat.
@@ -74,7 +91,7 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 <pre>
  [-]     (-)
-|1/2/1/ 3 4 5|5 - 6 5|
+|:1/2/1/ 3 4 5:|:5 - 6 5:|1325,|1231|3125,|5,231||
 </pre>
 
 ![An illustration of ties and slurs and tuplets.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuTupletsSlurs.PNG)
