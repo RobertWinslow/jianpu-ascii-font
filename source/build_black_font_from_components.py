@@ -150,7 +150,7 @@ def createLigBase(basename,namesuffix, accident=''):
     char = font.createChar(-1, basename+accident+namesuffix)
     char.addReference(basename)
     if accident:
-        char.addReference(accident, (0.6,0,0,0.8,-250,130))
+        char.addReference(accident, (0.6,0,0,0.6,-250,230))
     return char
 
 for accident in ['flat','sharp']:
