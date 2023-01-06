@@ -67,14 +67,7 @@ for filename in files:
         name = filename[:-4]
         pathDict[name] = contents
 
-#%%
-
-def buildSVG(componentNameList, color='#000'):
-    svg = SVGSTART
-    svg = svg + ''.join([pathDict[component] for component in componentNameList])
-    svg = svg + SVGEND
-    svg = svg.replace('#000',color)
-    return svg
+#%% DEFINITIONS TO CREATE FILES
 
 codepointDict = {
     '0':'0030', '1':'0031', '2':'0032', '3':'0033', 
@@ -84,23 +77,6 @@ codepointDict = {
     ',':'002c', "'":'0027', 's':'0073', 'q':'0071', '/':'002f', 
     '[':'005b', ']':'005d', '(':'0028', ')':'0029', 
 }
-
-def createBasicFile(character, component):
-    svg = buildSVG([component])
-    codepoint = codepointDict[character]
-    with open(os.path.join(OUTPUTFOLDER,codepoint+'.svg'), 'w') as f:
-        f.write(svg)
-        
-# pass in strings of characters to put before, and characters to put after
-from itertools import permutations
-def createPermutationFiles(svgContent, core,before,after):
-    for prefix in set(permutations(before)):
-        for suffix in set(permutations(after)):
-            charsequence = ''.join(prefix+(core,)+suffix)
-            filename = '-'.join([codepointDict[c] for c in charsequence])
-            with open(os.path.join(OUTPUTFOLDER,filename+'.svg'), 'w') as f:
-                f.write(svgContent)
-
 basicGeometryMapping = {
     '#': 'sharp',
     'b': 'flat',
@@ -123,6 +99,40 @@ basicGeometryMapping = {
     '(': 'slurLeft',
     ')': 'slurRight',
 }
+accidentalMapping = {
+    '^': 'sharpSmall',
+    '_': 'flatSmall',
+    '=': 'naturalSmall',
+}
+
+def buildSVG(componentNameList, color='#000'):
+    svg = SVGSTART
+    svg = svg + ''.join([pathDict[component] for component in componentNameList])
+    svg = svg + SVGEND
+    svg = svg.replace('#000',color)
+    return svg
+
+def createBasicFile(character, component):
+    svg = buildSVG([component])
+    codepoint = codepointDict[character]
+    with open(os.path.join(OUTPUTFOLDER,codepoint+'.svg'), 'w') as f:
+        f.write(svg)
+        
+# pass in strings of characters to put before, and characters to put after
+from itertools import permutations
+def createPermutationFiles(svgContent, core,before,after):
+    for prefix in set(permutations(before)):
+        for suffix in set(permutations(after)):
+            charsequence = ''.join(prefix+(core,)+suffix)
+            filename = '-'.join([codepointDict[c] for c in charsequence])
+            with open(os.path.join(OUTPUTFOLDER,filename+'.svg'), 'w') as f:
+                f.write(svgContent)
+
+
+
+### CREATE THE FILES
+
+# Start with simple, non-note single-codepoint glpyhs
 for c, shape in basicGeometryMapping.items():
     createBasicFile(c,shape)
 
