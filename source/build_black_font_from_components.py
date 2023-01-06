@@ -130,6 +130,19 @@ char.addPosSub("mySubtable", ('colon','bar','colon',))
 char.addPosSub("mySubtable", ('colon','bar','bar','colon',))
 
 
+# Function which means I don't need to manually do all the permutations.
+from itertools import permutations
+def addSubs(char, digit,before=(),after=()):
+    if isinstance(before, str):
+        before = (before,)
+    if isinstance(after, str):
+        after = (after,)
+    for prefix in set(permutations(before)):
+        for suffix in set(permutations(after)):
+            substitutionTuple = prefix+(digit,)+suffix
+            char.addPosSub("mySubtable", substitutionTuple)
+
+
 # parameters for octave dot spacing
 GAPBETWEENDOTS = 150
 DOTSHIFTFROMLINE = 80
@@ -143,17 +156,17 @@ for digit in ['1','2','3','4','5','6','7',]+['x','0','b','hash','space']:
     char = font.createChar(-1, f'{digit}_Quaver')
     char.addReference(digit)
     char.addReference('underscore', (1,0,0,1,0,0))
-    char.addPosSub("mySubtable", ('underscore',digit,))
-    char.addPosSub("mySubtable", ('q',digit,))
-    char.addPosSub("mySubtable", (digit,'slash',))
+    addSubs(char, digit, before=("underscore"))
+    addSubs(char, digit, before=("q"))
+    addSubs(char, digit, after=("slash"))
     
     # double underline for a semiquaver
     char = font.createChar(-1, f'{digit}_Semiquaver')
     char.addReference(digit)
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
-    char.addPosSub("mySubtable", ('doubleUnderscore',digit,))
-    char.addPosSub("mySubtable", ('underscore','underscore',digit,))
-    char.addPosSub("mySubtable", (digit,'slash','slash',))
+    addSubs(char, digit, before=("underscore","underscore"))
+    addSubs(char, digit, before=("doubleUnderscore"))
+    addSubs(char, digit, after=("slash","slash"))
     
 
 for digit in ['1','2','3','4','5','6','7',]:
@@ -161,27 +174,27 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = font.createChar(-1, f'{digit}up')
     char.addReference(digit)
     char.addReference('prime', (1,0,0,1,0,0))
-    char.addPosSub("mySubtable", (digit,'prime',))
+    addSubs(char, digit, after=("prime"))
     
     # up two octaves
     char = font.createChar(-1, f'{digit}upTwo')
     char.addReference(digit)
     char.addReference('prime', (1,0,0,1,0,0))
     char.addReference('prime', (1,0,0,1,0,GAPBETWEENDOTS))
-    char.addPosSub("mySubtable", (digit,'prime','prime',))
+    addSubs(char, digit, after=("prime","prime"))
     
     # down one octave
     char = font.createChar(-1, f'{digit}down')
     char.addReference(digit)
     char.addReference('comma', (1,0,0,1,0,0))
-    char.addPosSub("mySubtable", (digit,'comma',))
+    addSubs(char, digit, after=("comma"))
     
     # down two octaves
     char = font.createChar(-1, f'{digit}downTwo')
     char.addReference(digit)
     char.addReference('comma', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-GAPBETWEENDOTS))
-    char.addPosSub("mySubtable", (digit,'comma','comma',))
+    addSubs(char, digit, after=("comma","comma"))
     
 
     # down one octave with underline for a quaver
@@ -189,10 +202,9 @@ for digit in ['1','2','3','4','5','6','7',]:
     char.addReference(digit)
     char.addReference('underscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
-    char.addPosSub("mySubtable", ('underscore',digit,'comma',))
-    char.addPosSub("mySubtable", ('q',digit,'comma',))
-    char.addPosSub("mySubtable", (digit,'comma','slash',))
-    char.addPosSub("mySubtable", (digit,'slash','comma',))
+    addSubs(char, digit, before=('underscore',), after=("comma"))
+    addSubs(char, digit, before=('q',), after=("comma"))
+    addSubs(char, digit, after=("slash","comma"))
     
     # down two octaves with underline for a quaver
     char = font.createChar(-1, f'{digit}downTwoQuaver')
@@ -200,22 +212,18 @@ for digit in ['1','2','3','4','5','6','7',]:
     char.addReference('underscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE-GAPBETWEENDOTS))
-    char.addPosSub("mySubtable", ('q',digit,'comma','comma',))
-    char.addPosSub("mySubtable", ('underscore',digit,'comma','comma',))
-    char.addPosSub("mySubtable", (digit,'comma','comma','slash',))
-    char.addPosSub("mySubtable", (digit,'slash','comma','comma',))
-    char.addPosSub("mySubtable", (digit,'comma','slash','comma',))
+    addSubs(char, digit, before=('underscore',), after=("comma","comma"))
+    addSubs(char, digit, before=('q',), after=("comma","comma"))
+    addSubs(char, digit, after=("slash","comma","comma"))
     
     # down one octave with double underlines for a semiquaver
     char = font.createChar(-1, f'{digit}downSemiquaver')
     char.addReference(digit)
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
-    char.addPosSub("mySubtable", ('doubleUnderscore',digit,'comma',))
-    char.addPosSub("mySubtable", ('underscore','underscore',digit,'comma',))
-    char.addPosSub("mySubtable", (digit,'comma','slash','slash',))
-    char.addPosSub("mySubtable", (digit,'slash','slash','comma',))
-    char.addPosSub("mySubtable", (digit,'slash','comma','slash',))
+    addSubs(char, digit, before=('doubleUnderscore',), after=("comma"))
+    addSubs(char, digit, before=('underscore','underscore',), after=("comma"))
+    addSubs(char, digit, after=("slash","slash","comma"))
     
     # down two octaves with double underlines for a semiquaver
     char = font.createChar(-1, f'{digit}downTwoSemiquaver')
@@ -223,57 +231,42 @@ for digit in ['1','2','3','4','5','6','7',]:
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE-GAPBETWEENDOTS))
-    char.addPosSub("mySubtable", ('doubleUnderscore',digit,'comma','comma',))
-    char.addPosSub("mySubtable", ('underscore','underscore',digit,'comma','comma',))
-    char.addPosSub("mySubtable", (digit,'comma','comma','slash','slash',))
-    char.addPosSub("mySubtable", (digit,'slash','slash','comma','comma',))
-    char.addPosSub("mySubtable", (digit,'slash','comma','slash','comma',))
-    char.addPosSub("mySubtable", (digit,'slash','comma','comma','slash',))
-    char.addPosSub("mySubtable", (digit,'comma','slash','slash','comma',))
-    char.addPosSub("mySubtable", (digit,'comma','slash','comma','slash',))
+    addSubs(char, digit, before=('doubleUnderscore',), after=("comma","comma"))
+    addSubs(char, digit, before=('underscore','underscore',), after=("comma","comma"))
+    addSubs(char, digit, after=("slash","slash","comma","comma"))
     
     
     # Up one octave with a single underline
     char = font.createChar(-1, f'{digit}upQuaver')
     char.addReference(f'{digit}up')
     char.addReference('underscore')
-    char.addPosSub("mySubtable", ('q',digit,'prime',))
-    char.addPosSub("mySubtable", ('underscore',digit,'prime',))
-    char.addPosSub("mySubtable", (digit,'prime','slash',))
-    char.addPosSub("mySubtable", (digit,'slash','prime',))
+    addSubs(char, digit, before=('underscore',), after=("prime"))
+    addSubs(char, digit, before=('q',), after=("prime"))
+    addSubs(char, digit, after=("slash","prime"))
     
     # Up two octaves with a single underline
     char = font.createChar(-1, f'{digit}upTwoQuaver')
     char.addReference(f'{digit}upTwo')
     char.addReference('underscore')
-    char.addPosSub("mySubtable", ('q',digit,'prime','prime',))
-    char.addPosSub("mySubtable", ('underscore',digit,'prime','prime',))
-    char.addPosSub("mySubtable", (digit,'prime','prime','slash',))
-    char.addPosSub("mySubtable", (digit,'slash','prime','prime',))
-    char.addPosSub("mySubtable", (digit,'prime','slash','prime',))
+    addSubs(char, digit, before=('underscore',), after=("prime","prime"))
+    addSubs(char, digit, before=('q',), after=("prime","prime"))
+    addSubs(char, digit, after=("slash","prime","prime"))
     
     # Up one octave with a double underline
     char = font.createChar(-1, f'{digit}upSemiquaver')
     char.addReference(f'{digit}up')
     char.addReference('doubleUnderscore')
-    char.addPosSub("mySubtable", ('doubleUnderscore',digit,'prime',))
-    char.addPosSub("mySubtable", ('underscore','underscore',digit,'prime',))
-    char.addPosSub("mySubtable", (digit,'prime','slash','slash',))
-    char.addPosSub("mySubtable", (digit,'slash','slash','prime',))
-    char.addPosSub("mySubtable", (digit,'slash','prime','slash',))
+    addSubs(char, digit, before=('doubleUnderscore',), after=("prime"))
+    addSubs(char, digit, before=('underscore','underscore',), after=("prime"))
+    addSubs(char, digit, after=("slash","slash","prime"))
     
     # Up two octaves with a double underline
     char = font.createChar(-1, f'{digit}upTwoSemiquaver')
     char.addReference(f'{digit}upTwo')
     char.addReference('doubleUnderscore')
-    char.addPosSub("mySubtable", ('doubleUnderscore',digit,'prime','prime',))
-    char.addPosSub("mySubtable", ('underscore','underscore',digit,'prime','prime',))
-    char.addPosSub("mySubtable", (digit,'prime','prime','slash','slash',))
-    char.addPosSub("mySubtable", (digit,'slash','slash','prime','prime',))
-    char.addPosSub("mySubtable", (digit,'slash','prime','slash','prime',))
-    char.addPosSub("mySubtable", (digit,'slash','prime','prime','slash',))
-    char.addPosSub("mySubtable", (digit,'prime','slash','slash','prime',))
-    char.addPosSub("mySubtable", (digit,'prime','slash','prime','slash',))
+    addSubs(char, digit, before=('doubleUnderscore',), after=("prime","prime"))
+    addSubs(char, digit, before=('underscore','underscore',), after=("prime","prime"))
+    addSubs(char, digit, after=("slash","slash","prime","prime"))
 
 
 
