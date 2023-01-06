@@ -167,10 +167,23 @@ for digit in ['1','2','3','4','5','6','7',]:
     createPermutationFiles(svg,digit,'s',"''")
     createPermutationFiles(svg,digit,'',"''//")
 
-    # down one octave with underline for a quaver
-    # down two octaves with underline for a quaver
-    # down one octave with double underlines for a semiquaver
-    # down two octaves with double underlines for a semiquaver
+    # down one octave with a single underline
+    svg = buildSVG([digit,'downOneUnderline'], color=COLORS[digit])
+    createPermutationFiles(svg,digit,'q',"'")
+    createPermutationFiles(svg,digit,'',"'/")
+    # down two octaves with a single underline
+    svg = buildSVG([digit,'downTwoUnderline'], color=COLORS[digit])
+    createPermutationFiles(svg,digit,'q',"''")
+    createPermutationFiles(svg,digit,'',"''/")
+    # down one octave with a double underline
+    svg = buildSVG([digit,'downOneDoubleUnderline'], color=COLORS[digit])
+    createPermutationFiles(svg,digit,'s',"'")
+    createPermutationFiles(svg,digit,'',"'//")
+    # down two octaves with a double underline
+    svg = buildSVG([digit,'downTwoDoubleUnderline'], color=COLORS[digit])
+    createPermutationFiles(svg,digit,'s',"''")
+    createPermutationFiles(svg,digit,'',"''//")
+
 
 #%%
 
