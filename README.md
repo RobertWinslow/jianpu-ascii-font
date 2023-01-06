@@ -44,7 +44,6 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 ![A scale spanning three octaves, rendered with this font.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuScale.PNG)
 
-- Chords are indicated by vertically stacking notes. To do this, you'll need to type multiple lines and may need to use spaces ` ` to make sure things properly line up.
 
 
 ### Timing
@@ -55,6 +54,14 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 - Place a dash `-` after after a note to extend its length by one quarter note. Thus a whole note can be written `1 - - -`.
 - Place a dot, with `.` or `*`, to extend a note by half its length. (Two dots means that a note is extended by 3/4 of its length.)
+- Chords are indicated by vertically stacking notes. To do this, you'll need to type multiple lines and may need to use spaces ` ` to make sure things properly line up.
+
+<pre>
+|1' - 6|5 - 5|1' - 3'/1'/|
+|4 - 4|3 - 3|3 - 5 |
+</pre>
+
+![An illustration of ties and slurs and tuplets.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuChords.PNG)
 
 
 ### Other Symbols
