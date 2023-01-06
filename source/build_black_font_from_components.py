@@ -77,9 +77,9 @@ createBasicCharacter('0027','prime','upoctave')
 createBasicCharacter('002e','period','sidedot')
 createBasicCharacter('002a','cdot','sidedot')
 createBasicCharacter('0062','b','flat')#b
-createBasicCharacter('005f','flat','flat')#_
+createBasicCharacter('005f','flat','flatSmall')#_
 createBasicCharacter('0023','hash','sharp')##
-createBasicCharacter('005e','sharp','sharp')#^
+createBasicCharacter('005e','sharp','sharpSmall')#^
 createBasicCharacter('003d','natural','natural')#=
 createBasicCharacter('002d','minus','dash')
 createBasicCharacter('007c','bar','bar')
@@ -151,7 +151,7 @@ def createLigBase(basename,namesuffix, accident=''):
     char = font.createChar(-1, basename+accident+namesuffix)
     char.addReference(basename)
     if accident:
-        char.addReference(accident, (0.6,0,0,0.6,-250,230))
+        char.addReference(accident, (1,0,0,1,0,0))
     return char
 
 for accident in ['flat','sharp','natural']:
