@@ -142,6 +142,11 @@ def addSubs(char, digit,before=(),after=()):
             substitutionTuple = prefix+(digit,)+suffix
             char.addPosSub("mySubtable", substitutionTuple)
 
+def createLigBase(basename,namesuffix):
+    char = font.createChar(-1, basename+namesuffix)
+    char.addReference(basename)
+    return char
+
 
 # parameters for octave dot spacing
 GAPBETWEENDOTS = 150
@@ -153,16 +158,14 @@ DOTSHIFTFROMLINE = 80
 # I like how the cursor is rendered part-way through the glyph when in the middle of a ligature sequence.
 for digit in ['1','2','3','4','5','6','7',]+['x','0','b','hash','space']:
     # Single underline for quaver
-    char = font.createChar(-1, f'{digit}_Quaver')
-    char.addReference(digit)
+    char = createLigBase(digit, '_Quaver')
     char.addReference('underscore', (1,0,0,1,0,0))
     addSubs(char, digit, before=("underscore"))
     addSubs(char, digit, before=("q"))
     addSubs(char, digit, after=("slash"))
     
     # double underline for a semiquaver
-    char = font.createChar(-1, f'{digit}_Semiquaver')
-    char.addReference(digit)
+    char = createLigBase(digit, '_Semiquaver')
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
     addSubs(char, digit, before=("underscore","underscore"))
     addSubs(char, digit, before=("doubleUnderscore"))
@@ -171,35 +174,30 @@ for digit in ['1','2','3','4','5','6','7',]+['x','0','b','hash','space']:
 
 for digit in ['1','2','3','4','5','6','7',]:
     # up an octave
-    char = font.createChar(-1, f'{digit}up')
-    char.addReference(digit)
+    char = createLigBase(digit, 'up')
     char.addReference('prime', (1,0,0,1,0,0))
     addSubs(char, digit, after=("prime"))
     
     # up two octaves
-    char = font.createChar(-1, f'{digit}upTwo')
-    char.addReference(digit)
+    char = createLigBase(digit, 'upTwo')
     char.addReference('prime', (1,0,0,1,0,0))
     char.addReference('prime', (1,0,0,1,0,GAPBETWEENDOTS))
     addSubs(char, digit, after=("prime","prime"))
     
     # down one octave
-    char = font.createChar(-1, f'{digit}down')
-    char.addReference(digit)
+    char = createLigBase(digit, 'down')
     char.addReference('comma', (1,0,0,1,0,0))
     addSubs(char, digit, after=("comma"))
     
     # down two octaves
-    char = font.createChar(-1, f'{digit}downTwo')
-    char.addReference(digit)
+    char = createLigBase(digit, 'downTwo')
     char.addReference('comma', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-GAPBETWEENDOTS))
     addSubs(char, digit, after=("comma","comma"))
     
 
     # down one octave with underline for a quaver
-    char = font.createChar(-1, f'{digit}downQuaver')
-    char.addReference(digit)
+    char = createLigBase(digit, 'downQuaver')
     char.addReference('underscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
     addSubs(char, digit, before=('underscore',), after=("comma"))
@@ -207,8 +205,7 @@ for digit in ['1','2','3','4','5','6','7',]:
     addSubs(char, digit, after=("slash","comma"))
     
     # down two octaves with underline for a quaver
-    char = font.createChar(-1, f'{digit}downTwoQuaver')
-    char.addReference(digit)
+    char = createLigBase(digit, 'downTwoQuaver')
     char.addReference('underscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE-GAPBETWEENDOTS))
@@ -217,8 +214,7 @@ for digit in ['1','2','3','4','5','6','7',]:
     addSubs(char, digit, after=("slash","comma","comma"))
     
     # down one octave with double underlines for a semiquaver
-    char = font.createChar(-1, f'{digit}downSemiquaver')
-    char.addReference(digit)
+    char = createLigBase(digit, 'downSemiquaver')
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
     addSubs(char, digit, before=('doubleUnderscore',), after=("comma"))
@@ -226,8 +222,7 @@ for digit in ['1','2','3','4','5','6','7',]:
     addSubs(char, digit, after=("slash","slash","comma"))
     
     # down two octaves with double underlines for a semiquaver
-    char = font.createChar(-1, f'{digit}downTwoSemiquaver')
-    char.addReference(digit)
+    char = createLigBase(digit, 'downTwoSemiquaver')
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE-GAPBETWEENDOTS))
@@ -237,32 +232,28 @@ for digit in ['1','2','3','4','5','6','7',]:
     
     
     # Up one octave with a single underline
-    char = font.createChar(-1, f'{digit}upQuaver')
-    char.addReference(f'{digit}up')
+    char = createLigBase(digit+'up', 'Quaver')
     char.addReference('underscore')
     addSubs(char, digit, before=('underscore',), after=("prime"))
     addSubs(char, digit, before=('q',), after=("prime"))
     addSubs(char, digit, after=("slash","prime"))
     
     # Up two octaves with a single underline
-    char = font.createChar(-1, f'{digit}upTwoQuaver')
-    char.addReference(f'{digit}upTwo')
+    char = createLigBase(digit+'upTwo', 'Quaver')
     char.addReference('underscore')
     addSubs(char, digit, before=('underscore',), after=("prime","prime"))
     addSubs(char, digit, before=('q',), after=("prime","prime"))
     addSubs(char, digit, after=("slash","prime","prime"))
     
     # Up one octave with a double underline
-    char = font.createChar(-1, f'{digit}upSemiquaver')
-    char.addReference(f'{digit}up')
+    char = createLigBase(digit+'up', 'Semiquaver')
     char.addReference('doubleUnderscore')
     addSubs(char, digit, before=('doubleUnderscore',), after=("prime"))
     addSubs(char, digit, before=('underscore','underscore',), after=("prime"))
     addSubs(char, digit, after=("slash","slash","prime"))
     
     # Up two octaves with a double underline
-    char = font.createChar(-1, f'{digit}upTwoSemiquaver')
-    char.addReference(f'{digit}upTwo')
+    char = createLigBase(digit+'upTwo', 'Semiquaver')
     char.addReference('doubleUnderscore')
     addSubs(char, digit, before=('doubleUnderscore',), after=("prime","prime"))
     addSubs(char, digit, before=('underscore','underscore',), after=("prime","prime"))
