@@ -161,7 +161,12 @@ createPermutationFiles(svg,'0','s','')
 
 
 # DIGIT LIGATURES
+#for accid in ['','=','^','_']
 for digit in ['1','2','3','4','5','6','7',]:
+    #Standalone Note
+    svg = buildSVG([digit,], color=COLORS[digit])
+    createPermutationFiles(svg,digit,'','')
+
     # Single underline for quaver
     svg = buildSVG([digit,'underline'], color=COLORS[digit])
     createPermutationFiles(svg,digit,'','/')
