@@ -38,7 +38,7 @@ Below is a list of jianpu features implemented in this font and how to use them.
 - Use digits `1234567` for notes.
 - Use `0` for a rest.
 
-<pre>|3345|5432|1123|3220|</pre>
+<pre>|3 3 4 5|5 4 3 2|1 1 2 3|3 2 2 0|</pre>
 
 ![A quick diddy. Ode to Joy.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuBasic.PNG)
 
@@ -63,7 +63,7 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 
 
-- Place a dash `-` after after a note to extend its length by one quarter note. Thus a whole note can be written `1 - - -`.
+- Place a dash `-` after a note to extend its length by one quarter note. Thus a whole note can be written `1 - - -`.
 - Place a dot with `.` to extend a note by half its length. (Two dots means that a note is extended by 3/4 of its length.)
 - Chords are indicated by vertically stacking notes. To do this, you'll need to type multiple lines and may need to use spaces ` ` to make sure things properly line up.
 
@@ -78,7 +78,7 @@ Below is a list of jianpu features implemented in this font and how to use them.
 ### Other Symbols
 - Flats are typed with `b` or `_`, and sharps with `#` or `^`. Naturals are marked with `=` (but naturals are rarely if ever needed in jianpu notation).
     - Place these before the notes. 
-    - I couldn't decide how big to make the accidentals, and so I split the difference. `b` and `#` are standalone characters, while `_`, `^`, and `=` combine with notes into a compact ligature.
+    - I couldn't decide how big to make the accidentals, and so I split the difference. `b` and `#` are large standalone characters, while `_`, `^`, and `=` combine with notes into compact ligatures.
     - Place the standalone accidentals before any timing prefixes. EG `#s4` for a sixteenth note F sharp. 
 
 <pre>3#3^3b3_3 3/#/3/^3/b3/_3/</pre>
@@ -176,8 +176,8 @@ And more complex musical notation may require more specialized typesetting softw
 This font is released under the SIL Open Font License.
 
 Note that this font is a derivative work of the font with Reserved Font Name 'Source', Copyright © Adobe Systems Incorporated 2010, 2012.
-In particular, it uses the numerals 0123456789 from "Source Code Pro", by Paul D. Hunt, 
-downloaded from Google Fonts here: https://fonts.google.com/specimen/Source+Code+Pro
+In particular, it uses the numerals `0123456789` from "Source Code Pro", by Paul D. Hunt, 
+downloaded from Google Fonts here: [https://fonts.google.com/specimen/Source+Code+Pro](https://fonts.google.com/specimen/Source+Code+Pro)
 
 <!--
 http://anuccme.com/jianpu
