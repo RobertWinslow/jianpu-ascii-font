@@ -6,7 +6,7 @@
 <style>
 @font-face {
     font-family: Jianpu;
-    src: url("../JianpuASCII.ttf ");
+    src: url("../../JianpuASCII.ttf ");
 }
 .jianpublock {
     font-family: Jianpu;
