@@ -76,7 +76,6 @@ def buildSVG(componentNameList, color='#000'):
     svg = svg.replace('#000',color)
     return svg
 
-
 codepointDict = {
     '0':'0030', '1':'0031', '2':'0032', '3':'0033', 
     '4':'0034', '5':'0035', '6':'0036', '7':'0037', 
@@ -86,36 +85,12 @@ codepointDict = {
     '[':'005b', ']':'005d', '(':'0028', ')':'0029', 
 }
 
-
-#
-
 def createBasicFile(character, component):
     svg = buildSVG([component])
     codepoint = codepointDict[character]
     with open(os.path.join(OUTPUTFOLDER,codepoint+'.svg'), 'w') as f:
         f.write(svg)
-
-createBasicFile('#', 'sharp')
-createBasicFile('b', 'flat')
-createBasicFile('^', 'sharp')
-createBasicFile('_', 'flat')
-createBasicFile('=', 'natural')
-createBasicFile(':', 'colon')
-createBasicFile('|', 'bar')
-createBasicFile('x', 'x')
-createBasicFile('-', 'dash')
-createBasicFile('.', 'sidedot')
-createBasicFile('*', 'sidedot')
-createBasicFile(',', 'downoctave')
-createBasicFile("'", 'upoctave')
-createBasicFile('s', 'doubleUnderline')
-createBasicFile('q', 'underline')
-createBasicFile('/', 'underline')
-createBasicFile('[', 'tupletLeft')
-createBasicFile(']', 'tupletRight')
-createBasicFile('(', 'slurLeft')
-createBasicFile(')', 'slurRight')
-
+        
 # pass in strings of characters to put before, and characters to put after
 from itertools import permutations
 def createPermutationFiles(svgContent, core,before,after):
@@ -125,6 +100,55 @@ def createPermutationFiles(svgContent, core,before,after):
             filename = '-'.join([codepointDict[c] for c in charsequence])
             with open(os.path.join(OUTPUTFOLDER,filename+'.svg'), 'w') as f:
                 f.write(svgContent)
+
+basicGeometryMapping = {
+    '#': 'sharp',
+    'b': 'flat',
+    '^': 'sharp',
+    '_': 'flat',
+    '=': 'natural',
+    ':': 'colon',
+    '|': 'bar',
+    'x': 'x',
+    '-': 'dash',
+    '.': 'sidedot',
+    '*': 'sidedot',
+    ',': 'downoctave',
+    "'": 'upoctave',
+    's': 'doubleUnderline',
+    'q': 'underline',
+    '/': 'underline',
+    '[': 'tupletLeft',
+    ']': 'tupletRight',
+    '(': 'slurLeft',
+    ')': 'slurRight',
+}
+for c, shape in basicGeometryMapping.items():
+    createBasicFile(c,shape)
+
+# underlines for some characters
+for c in ['x','.','#','b','^','_','=','*',]:
+    core = basicGeometryMapping[c]
+    # Single underline for quaver
+    svg = buildSVG([core,'underline'])
+    createPermutationFiles(svg,c,'','/')
+    createPermutationFiles(svg,c,'q','')
+    # double underline for a semiquaver
+    svg = buildSVG([core,'doubleUnderline'])
+    createPermutationFiles(svg,c,'','//')
+    createPermutationFiles(svg,c,'s','')
+
+# special case for 0
+# Single underline for quaver
+svg = buildSVG(['0','underline'], color=COLORS['0'])
+createPermutationFiles(svg,'0','','/')
+createPermutationFiles(svg,'0','q','')
+# double underline for a semiquaver
+svg = buildSVG(['0','doubleUnderline'], color=COLORS['0'])
+createPermutationFiles(svg,'0','','//')
+createPermutationFiles(svg,'0','s','')
+
+
 
 # DIGIT LIGATURES
 for digit in ['1','2','3','4','5','6','7',]:
