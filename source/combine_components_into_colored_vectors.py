@@ -30,26 +30,26 @@ COLORS = {
     "6": "#5359b5",
     "7": "#9352a8",
 }
-COLORS_HIGH = [
-    "#8a8489",
-    "#e66980",
-    "#ff9d50",
-    "#f7ce50",
-    "#87d989",
-    "#2dbce2",
-    "#8088e2",
-    "#ce8ce3",
-]
-COLORS_LOW = [
-    "#8a8489",
-    "#87122d",
-    "#c26012",
-    "#a29812",
-    "#176a1e",
-    "#113074",
-    "#2a286f",
-    "#652277",
-]
+COLORS_HIGH = {
+    '0': '#8a8489',
+    '1': '#e66980',
+    '2': '#ff9d50',
+    '3': '#f7ce50',
+    '4': '#87d989',
+    '5': '#2dbce2',
+    '6': '#8088e2',
+    '7': '#ce8ce3'
+}
+COLORS_LOW = {
+    '0': '#8a8489',
+    '1': '#87122d',
+    '2': '#c26012',
+    '3': '#a29812',
+    '4': '#176a1e',
+    '5': '#113074',
+    '6': '#2a286f',
+    '7': '#652277'
+}
 
 
 #%%
@@ -138,51 +138,51 @@ for digit in ['1','2','3','4','5','6','7',]:
     createPermutationFiles(svg,digit,'s','')
     
     # up an octave
-    svg = buildSVG([digit,'upoctave'], color=COLORS[digit])
+    svg = buildSVG([digit,'upoctave'], color=COLORS_HIGH[digit])
     createPermutationFiles(svg,digit,'',"'")
     # up two octaves
-    svg = buildSVG([digit,'upTwo'], color=COLORS[digit])
+    svg = buildSVG([digit,'upTwo'], color=COLORS_HIGH[digit])
     createPermutationFiles(svg,digit,'',"''")
     # down one octave
-    svg = buildSVG([digit,'downoctave'], color=COLORS[digit])
+    svg = buildSVG([digit,'downoctave'], color=COLORS_LOW[digit])
     createPermutationFiles(svg,digit,'',",,")
     # down two octaves
-    svg = buildSVG([digit,'downTwo'], color=COLORS[digit])
+    svg = buildSVG([digit,'downTwo'], color=COLORS_LOW[digit])
     createPermutationFiles(svg,digit,'',",,")
     
     # Up one octave with a single underline
-    svg = buildSVG([digit,'upoctave', 'underline'], color=COLORS[digit])
+    svg = buildSVG([digit,'upoctave', 'underline'], color=COLORS_HIGH[digit])
     createPermutationFiles(svg,digit,'q',"'")
     createPermutationFiles(svg,digit,'',"'/")
     # Up two octaves with a single underline
-    svg = buildSVG([digit,'upTwo', 'underline'], color=COLORS[digit])
+    svg = buildSVG([digit,'upTwo', 'underline'], color=COLORS_HIGH[digit])
     createPermutationFiles(svg,digit,'q',"''")
     createPermutationFiles(svg,digit,'',"''/")
     # Up one octave with a double underline
-    svg = buildSVG([digit,'upoctave', 'doubleUnderline'], color=COLORS[digit])
+    svg = buildSVG([digit,'upoctave', 'doubleUnderline'], color=COLORS_HIGH[digit])
     createPermutationFiles(svg,digit,'s',"'")
     createPermutationFiles(svg,digit,'',"'//")
     # Up two octaves with a double underline
-    svg = buildSVG([digit,'upTwo', 'doubleUnderline'], color=COLORS[digit])
+    svg = buildSVG([digit,'upTwo', 'doubleUnderline'], color=COLORS_HIGH[digit])
     createPermutationFiles(svg,digit,'s',"''")
     createPermutationFiles(svg,digit,'',"''//")
 
     # down one octave with a single underline
-    svg = buildSVG([digit,'downOneUnderline'], color=COLORS[digit])
-    createPermutationFiles(svg,digit,'q',"'")
-    createPermutationFiles(svg,digit,'',"'/")
+    svg = buildSVG([digit,'downOneUnderline'], color=COLORS_LOW[digit])
+    createPermutationFiles(svg,digit,'q',",")
+    createPermutationFiles(svg,digit,'',",/")
     # down two octaves with a single underline
-    svg = buildSVG([digit,'downTwoUnderline'], color=COLORS[digit])
-    createPermutationFiles(svg,digit,'q',"''")
-    createPermutationFiles(svg,digit,'',"''/")
+    svg = buildSVG([digit,'downTwoUnderline'], color=COLORS_LOW[digit])
+    createPermutationFiles(svg,digit,'q',",,")
+    createPermutationFiles(svg,digit,'',",,/")
     # down one octave with a double underline
-    svg = buildSVG([digit,'downOneDoubleUnderline'], color=COLORS[digit])
-    createPermutationFiles(svg,digit,'s',"'")
-    createPermutationFiles(svg,digit,'',"'//")
+    svg = buildSVG([digit,'downOneDoubleUnderline'], color=COLORS_LOW[digit])
+    createPermutationFiles(svg,digit,'s',",")
+    createPermutationFiles(svg,digit,'',",//")
     # down two octaves with a double underline
-    svg = buildSVG([digit,'downTwoDoubleUnderline'], color=COLORS[digit])
-    createPermutationFiles(svg,digit,'s',"''")
-    createPermutationFiles(svg,digit,'',"''//")
+    svg = buildSVG([digit,'downTwoDoubleUnderline'], color=COLORS_LOW[digit])
+    createPermutationFiles(svg,digit,'s',",,")
+    createPermutationFiles(svg,digit,'',",,//")
 
 
 #%%
