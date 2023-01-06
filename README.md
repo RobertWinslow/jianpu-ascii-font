@@ -63,7 +63,7 @@ Below is a list of jianpu features implemented in this font and how to use them.
 - Bar lines are typed with `|` and `||`
 - Repeat symbols are typed with `||:`, `:||:`, and `:||`
 - Use `x` for a percussion beat.
-- 
+- Use `[-]` and `(-)` on the line above the notes to indicate tuplets or ties. 
 
 <pre>
  [-]     (-)
