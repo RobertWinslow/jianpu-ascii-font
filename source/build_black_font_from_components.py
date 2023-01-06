@@ -76,15 +76,17 @@ createBasicCharacter('002c','comma','downoctave')
 createBasicCharacter('0027','prime','upoctave')
 createBasicCharacter('002e','period','sidedot')
 createBasicCharacter('002a','cdot','sidedot')
-createBasicCharacter('0062','flat','flat')#b
-createBasicCharacter('0023','sharp','sharp')##
+createBasicCharacter('0062','b','flat')#b
+createBasicCharacter('005f','flat','flat')#_
+createBasicCharacter('0023','hash','sharp')##
+createBasicCharacter('005e','sharp','sharp')#^
 createBasicCharacter('002d','minus','dash')
 createBasicCharacter('007c','bar','bar')
 createBasicCharacter('003a','colon','colon')
-createBasicCharacter('005f','underscore','underscore')
-createBasicCharacter('0071','q','underscore') # alternate underline. q short for 'quaver', meaning an eighth note
-createBasicCharacter('002f','slash','underscore') # appended slash indicates an underline in tomato jianpu
-createBasicCharacter('0073','doubleUnderscore','doubleUnderscore') # This is mapped to the letter s, for "semiquaver".
+#createBasicCharacter('005f','underline','underline')
+createBasicCharacter('0071','underline','underline') # alternate underline. q short for 'quaver', meaning an eighth note
+createBasicCharacter('002f','slash','underline') # appended slash indicates an underline in tomato jianpu
+createBasicCharacter('0073','doubleUnderline','doubleUnderline') # This is mapped to the letter s, for "semiquaver".
 createBasicCharacter('005b','tupletLeft','tupletLeft')
 createBasicCharacter('005d','tupletRight','tupletRight')
 createBasicCharacter('0028','slurLeft','slurLeft')
@@ -165,31 +167,31 @@ DOTSHIFTFROMLINE = 80
 # Some of these ligatures could be ignored in favor of zero-width trickery.
 # But I'm just not personally a fan of setting a character to be zero width.
 # I like how the cursor is rendered part-way through the glyph when in the middle of a ligature sequence.
-for digit in ['x','0','flat','sharp','space', 'period',]:
+for digit in ['x','0','flat','sharp','space', 'period','hash', 'b']:
     # Single underline for quaver
     char = createLigBase(digit, '_Quaver')
-    char.addReference('underscore', (1,0,0,1,0,0))
-    addSubs(char, digit, before=("q"))
+    char.addReference('underline', (1,0,0,1,0,0))
+    addSubs(char, digit, before=('underline'))
     addSubs(char, digit, after=("slash"))
     
     # double underline for a semiquaver
     char = createLigBase(digit, '_Semiquaver')
-    char.addReference('doubleUnderscore', (1,0,0,1,0,0))
-    addSubs(char, digit, before=("doubleUnderscore"))
+    char.addReference('doubleUnderline', (1,0,0,1,0,0))
+    addSubs(char, digit, before=("doubleUnderline"))
     addSubs(char, digit, after=("slash","slash"))
     
 for accident in ["","sharp","flat"]:
   for digit in ['1','2','3','4','5','6','7',]:
     # Single underline for quaver
     char = createLigBase(digit, '_Quaver', accident=accident)
-    char.addReference('underscore', (1,0,0,1,0,0))
-    addSubs(char, digit, before=("q"), accident=accident)
+    char.addReference('underline', (1,0,0,1,0,0))
+    addSubs(char, digit, before=('underline'), accident=accident)
     addSubs(char, digit, after=("slash"), accident=accident)
     
     # double underline for a semiquaver
     char = createLigBase(digit, '_Semiquaver', accident=accident)
-    char.addReference('doubleUnderscore', (1,0,0,1,0,0))
-    addSubs(char, digit, before=("doubleUnderscore"), accident=accident)
+    char.addReference('doubleUnderline', (1,0,0,1,0,0))
+    addSubs(char, digit, before=("doubleUnderline"), accident=accident)
     addSubs(char, digit, after=("slash","slash"), accident=accident)
 
     # up an octave
@@ -217,57 +219,57 @@ for accident in ["","sharp","flat"]:
 
     # down one octave with underline for a quaver
     char = createLigBase(digit, 'downQuaver', accident=accident)
-    char.addReference('underscore', (1,0,0,1,0,0))
+    char.addReference('underline', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
-    addSubs(char, digit, before=('q',), after=("comma"), accident=accident)
+    addSubs(char, digit, before=('underline',), after=("comma"), accident=accident)
     addSubs(char, digit, after=("slash","comma"), accident=accident)
     
     # down two octaves with underline for a quaver
     char = createLigBase(digit, 'downTwoQuaver', accident=accident)
-    char.addReference('underscore', (1,0,0,1,0,0))
+    char.addReference('underline', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE-GAPBETWEENDOTS))
-    addSubs(char, digit, before=('q',), after=("comma","comma"), accident=accident)
+    addSubs(char, digit, before=('underline',), after=("comma","comma"), accident=accident)
     addSubs(char, digit, after=("slash","comma","comma"), accident=accident)
     
     # down one octave with double underlines for a semiquaver
     char = createLigBase(digit, 'downSemiquaver', accident=accident)
-    char.addReference('doubleUnderscore', (1,0,0,1,0,0))
+    char.addReference('doubleUnderline', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
-    addSubs(char, digit, before=('doubleUnderscore',), after=("comma"), accident=accident)
+    addSubs(char, digit, before=('doubleUnderline',), after=("comma"), accident=accident)
     addSubs(char, digit, after=("slash","slash","comma"), accident=accident)
     
     # down two octaves with double underlines for a semiquaver
     char = createLigBase(digit, 'downTwoSemiquaver', accident=accident)
-    char.addReference('doubleUnderscore', (1,0,0,1,0,0))
+    char.addReference('doubleUnderline', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE-GAPBETWEENDOTS))
-    addSubs(char, digit, before=('doubleUnderscore',), after=("comma","comma"), accident=accident)
+    addSubs(char, digit, before=('doubleUnderline',), after=("comma","comma"), accident=accident)
     addSubs(char, digit, after=("slash","slash","comma","comma"), accident=accident)
     
     
     # Up one octave with a single underline
     char = createLigBase(digit+accident+'up', 'Quaver', accident=accident)
-    char.addReference('underscore')
-    addSubs(char, digit, before=('q',), after=("prime"), accident=accident)
+    char.addReference('underline')
+    addSubs(char, digit, before=('underline',), after=("prime"), accident=accident)
     addSubs(char, digit, after=("slash","prime"), accident=accident)
     
     # Up two octaves with a single underline
     char = createLigBase(digit+accident+'upTwo', 'Quaver', accident=accident)
-    char.addReference('underscore')
-    addSubs(char, digit, before=('q',), after=("prime","prime"), accident=accident)
+    char.addReference('underline')
+    addSubs(char, digit, before=('underline',), after=("prime","prime"), accident=accident)
     addSubs(char, digit, after=("slash","prime","prime"), accident=accident)
     
     # Up one octave with a double underline
     char = createLigBase(digit+accident+'up', 'Semiquaver', accident=accident)
-    char.addReference('doubleUnderscore')
-    addSubs(char, digit, before=('doubleUnderscore',), after=("prime"), accident=accident)
+    char.addReference('doubleUnderline')
+    addSubs(char, digit, before=('doubleUnderline',), after=("prime"), accident=accident)
     addSubs(char, digit, after=("slash","slash","prime"), accident=accident)
     
     # Up two octaves with a double underline
     char = createLigBase(digit+accident+'upTwo', 'Semiquaver', accident=accident)
-    char.addReference('doubleUnderscore')
-    addSubs(char, digit, before=('doubleUnderscore',), after=("prime","prime"), accident=accident)
+    char.addReference('doubleUnderline')
+    addSubs(char, digit, before=('doubleUnderline',), after=("prime","prime"), accident=accident)
     addSubs(char, digit, after=("slash","slash","prime","prime"), accident=accident)
 
 
