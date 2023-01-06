@@ -160,14 +160,12 @@ for digit in ['1','2','3','4','5','6','7',]+['x','0','b','hash','space']:
     # Single underline for quaver
     char = createLigBase(digit, '_Quaver')
     char.addReference('underscore', (1,0,0,1,0,0))
-    addSubs(char, digit, before=("underscore"))
     addSubs(char, digit, before=("q"))
     addSubs(char, digit, after=("slash"))
     
     # double underline for a semiquaver
     char = createLigBase(digit, '_Semiquaver')
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
-    addSubs(char, digit, before=("underscore","underscore"))
     addSubs(char, digit, before=("doubleUnderscore"))
     addSubs(char, digit, after=("slash","slash"))
     
@@ -200,7 +198,6 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = createLigBase(digit, 'downQuaver')
     char.addReference('underscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
-    addSubs(char, digit, before=('underscore',), after=("comma"))
     addSubs(char, digit, before=('q',), after=("comma"))
     addSubs(char, digit, after=("slash","comma"))
     
@@ -209,7 +206,6 @@ for digit in ['1','2','3','4','5','6','7',]:
     char.addReference('underscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE))
     char.addReference('comma', (1,0,0,1,0,-DOTSHIFTFROMLINE-GAPBETWEENDOTS))
-    addSubs(char, digit, before=('underscore',), after=("comma","comma"))
     addSubs(char, digit, before=('q',), after=("comma","comma"))
     addSubs(char, digit, after=("slash","comma","comma"))
     
@@ -218,7 +214,6 @@ for digit in ['1','2','3','4','5','6','7',]:
     char.addReference('doubleUnderscore', (1,0,0,1,0,0))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
     addSubs(char, digit, before=('doubleUnderscore',), after=("comma"))
-    addSubs(char, digit, before=('underscore','underscore',), after=("comma"))
     addSubs(char, digit, after=("slash","slash","comma"))
     
     # down two octaves with double underlines for a semiquaver
@@ -227,21 +222,18 @@ for digit in ['1','2','3','4','5','6','7',]:
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE))
     char.addReference('comma', (1,0,0,1,0,-2*DOTSHIFTFROMLINE-GAPBETWEENDOTS))
     addSubs(char, digit, before=('doubleUnderscore',), after=("comma","comma"))
-    addSubs(char, digit, before=('underscore','underscore',), after=("comma","comma"))
     addSubs(char, digit, after=("slash","slash","comma","comma"))
     
     
     # Up one octave with a single underline
     char = createLigBase(digit+'up', 'Quaver')
     char.addReference('underscore')
-    addSubs(char, digit, before=('underscore',), after=("prime"))
     addSubs(char, digit, before=('q',), after=("prime"))
     addSubs(char, digit, after=("slash","prime"))
     
     # Up two octaves with a single underline
     char = createLigBase(digit+'upTwo', 'Quaver')
     char.addReference('underscore')
-    addSubs(char, digit, before=('underscore',), after=("prime","prime"))
     addSubs(char, digit, before=('q',), after=("prime","prime"))
     addSubs(char, digit, after=("slash","prime","prime"))
     
@@ -249,14 +241,12 @@ for digit in ['1','2','3','4','5','6','7',]:
     char = createLigBase(digit+'up', 'Semiquaver')
     char.addReference('doubleUnderscore')
     addSubs(char, digit, before=('doubleUnderscore',), after=("prime"))
-    addSubs(char, digit, before=('underscore','underscore',), after=("prime"))
     addSubs(char, digit, after=("slash","slash","prime"))
     
     # Up two octaves with a double underline
     char = createLigBase(digit+'upTwo', 'Semiquaver')
     char.addReference('doubleUnderscore')
     addSubs(char, digit, before=('doubleUnderscore',), after=("prime","prime"))
-    addSubs(char, digit, before=('underscore','underscore',), after=("prime","prime"))
     addSubs(char, digit, after=("slash","slash","prime","prime"))
 
 
