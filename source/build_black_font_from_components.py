@@ -80,7 +80,7 @@ createBasicCharacter('0062','b','flat')#b
 createBasicCharacter('005f','flat','flatSmall')#_
 createBasicCharacter('0023','hash','sharp')##
 createBasicCharacter('005e','sharp','sharpSmall')#^
-createBasicCharacter('003d','natural','natural')#=
+createBasicCharacter('003d','natural','naturalSmall')#=
 createBasicCharacter('002d','minus','dash')
 createBasicCharacter('007c','bar','bar')
 createBasicCharacter('003a','colon','colon')
