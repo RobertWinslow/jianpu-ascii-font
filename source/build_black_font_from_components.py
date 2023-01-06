@@ -80,6 +80,7 @@ createBasicCharacter('0062','b','flat')#b
 createBasicCharacter('005f','flat','flat')#_
 createBasicCharacter('0023','hash','sharp')##
 createBasicCharacter('005e','sharp','sharp')#^
+createBasicCharacter('003d','natural','natural')#=
 createBasicCharacter('002d','minus','dash')
 createBasicCharacter('007c','bar','bar')
 createBasicCharacter('003a','colon','colon')
@@ -153,7 +154,7 @@ def createLigBase(basename,namesuffix, accident=''):
         char.addReference(accident, (0.6,0,0,0.6,-250,230))
     return char
 
-for accident in ['flat','sharp']:
+for accident in ['flat','sharp','natural']:
     for digit in ['1','2','3','4','5','6','7',]:
         char = createLigBase(digit,'', accident=accident)
         addSubs(char, digit, accident=accident)
@@ -167,7 +168,7 @@ DOTSHIFTFROMLINE = 80
 # Some of these ligatures could be ignored in favor of zero-width trickery.
 # But I'm just not personally a fan of setting a character to be zero width.
 # I like how the cursor is rendered part-way through the glyph when in the middle of a ligature sequence.
-for digit in ['x','0','flat','sharp', 'period','hash', 'b']: #'space',
+for digit in ['x','0','period', 'flat','sharp','natural','hash','b',]: #'space',
     # Single underline for quaver
     char = createLigBase(digit, '_Quaver')
     char.addReference('underline', (1,0,0,1,0,0))

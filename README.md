@@ -76,8 +76,9 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 
 ### Other Symbols
-- Flats are typed with `b` or `_`, and sharps with `#` or `^`. Place these before the notes. 
-    - I couldn't decide how big to make the accidentals, and so I split the difference. `b` and `#` are standalone characters, while `_` and `^` combine with notes into a compact ligature.
+- Flats are typed with `b` or `_`, and sharps with `#` or `^`. Naturals are marked with `=` (but naturals are rarely if ever needed in jianpu notation).
+    - Place these before the notes. 
+    - I couldn't decide how big to make the accidentals, and so I split the difference. `b` and `#` are standalone characters, while `_`, `^`, and `=` combine with notes into a compact ligature.
     - Place the standalone accidentals before any timing prefixes. EG `#s4` for a sixteenth note F sharp. 
 
 <pre>3#3^3b3_3 3/#/3/^3/b3/_3/</pre>
