@@ -213,7 +213,7 @@ for digit in ['1','2','3','4','5','6','7',]:
     createPermutationFiles(svg,digit,accid+'',"''")
     # down one octave
     svg = buildSVG([accidComponent, digit,'downoctave'], color=COLORS_LOW[digit])
-    createPermutationFiles(svg,digit,accid+'',",,")
+    createPermutationFiles(svg,digit,accid+'',",")
     # down two octaves
     svg = buildSVG([accidComponent, digit,'downTwo'], color=COLORS_LOW[digit])
     createPermutationFiles(svg,digit,accid+'',",,")
