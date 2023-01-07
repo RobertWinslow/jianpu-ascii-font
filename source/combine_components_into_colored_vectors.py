@@ -18,7 +18,7 @@ OUTPUTFOLDER = 'svg/combined'
 
 
 COLORS = {
-    "0": "#8a8489",
+    "0": "#d4d4d4",
     "1": "#bf344b",
     "2": "#ea8127",
     "3": "#d9ae2f",
@@ -28,7 +28,7 @@ COLORS = {
     "7": "#9352a8",
 }
 COLORS_HIGH = {
-    '0': '#8a8489',
+    '0': '#d4d4d4',
     '1': '#e66980',
     '2': '#ff9d50',
     '3': '#f7ce50',
@@ -38,7 +38,7 @@ COLORS_HIGH = {
     '7': '#ce8ce3'
 }
 COLORS_LOW = {
-    '0': '#8a8489',
+    '0': '#d4d4d4',
     '1': '#87122d',
     '2': '#c26012',
     '3': '#a29812',
@@ -47,6 +47,8 @@ COLORS_LOW = {
     '6': '#2a286f',
     '7': '#652277'
 }
+
+BLACKUNDERLINES = False
 
 
 #%%
@@ -111,7 +113,8 @@ def buildSVG(componentNameList, color='#000'):
     svg = svg + ''.join([pathDict[component] for component in componentNameList])
     svg = svg + SVGEND
     svg = svg.replace('#000',color)
-    svg = svg.replace('black',color)
+    if not BLACKUNDERLINES:
+        svg = svg.replace('black',color)
     return svg
 
 def createBasicFile(character, component):
