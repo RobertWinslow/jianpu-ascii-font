@@ -131,7 +131,7 @@ For use on a website, just host the font file and apply it to a `pre` element us
 
 Simple Example:
 
-```
+```html
 <style>
 @font-face {
     font-family: Jianpu;
