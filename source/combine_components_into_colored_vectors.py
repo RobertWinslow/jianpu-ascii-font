@@ -254,6 +254,12 @@ for digit in ['1','2','3','4','5','6','7',]:
     createPermutationFiles(svg,digit,accid+'',",,//")
 
 
+# Manually add space character
+
+svg = buildSVG([])
+with open(os.path.join(OUTPUTFOLDER,'0020.svg'), 'w') as f:
+    f.write(svg)
+
 #%%
 
 
