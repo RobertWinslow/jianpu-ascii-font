@@ -118,16 +118,19 @@ def createBasicFile(character, component):
     codepoint = codepointDict[character]
     with open(os.path.join(OUTPUTFOLDER,codepoint+'.svg'), 'w') as f:
         f.write(svg)
-        
+
+def createBasicComboFile(charSequence,svgContent):
+    filename = '-'.join([codepointDict[c] for c in charSequence])
+    with open(os.path.join(OUTPUTFOLDER,filename+'.svg'), 'w') as f:
+        f.write(svgContent)
+
 # pass in strings of characters to put before, and characters to put after
 from itertools import permutations
 def createPermutationFiles(svgContent, core,before,after):
     for prefix in set(permutations(before)):
         for suffix in set(permutations(after)):
-            charsequence = ''.join(prefix+(core,)+suffix)
-            filename = '-'.join([codepointDict[c] for c in charsequence])
-            with open(os.path.join(OUTPUTFOLDER,filename+'.svg'), 'w') as f:
-                f.write(svgContent)
+            charSequence = ''.join(prefix+(core,)+suffix)
+            createBasicComboFile(charSequence,svgContent)
 
 
 
@@ -158,6 +161,29 @@ createPermutationFiles(svg,'0','q','')
 svg = buildSVG(['0','doubleUnderline'], color=COLORS['0'])
 createPermutationFiles(svg,'0','','//')
 createPermutationFiles(svg,'0','s','')
+
+
+# Other special cases
+## Double dot
+svg = buildSVG(['doubleDot',])
+createBasicComboFile('..',svg)
+createBasicComboFile('**',svg)
+## Double bar ||
+svg = buildSVG(['doubleBar',])
+createBasicComboFile('||',svg)
+## Repeat signs
+# :|
+svg = buildSVG(['repeatRight',])
+createBasicComboFile(':||',svg)
+createBasicComboFile(':|',svg)
+# |:
+svg = buildSVG(['repeatLeft',])
+createBasicComboFile('||:',svg)
+createBasicComboFile('|:',svg)
+# :|:
+svg = buildSVG(['repeatBoth',])
+createBasicComboFile(':||:',svg)
+createBasicComboFile(':|:',svg)
 
 
 
