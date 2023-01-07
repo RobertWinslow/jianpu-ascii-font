@@ -1,29 +1,18 @@
 # Jianpu Ascii Font
 
 This is a font which uses ascii ligatures to display simplified Jianpu 简谱 musical notation.
+This is not a specialized font intended for use some musical application,
+but rather a very simple way of rendering notation in a word-processor or personal website.
 
 [The font file can can be downloaded from the GitHub repo](https://github.com/RobertWinslow/jianpu-ascii-font/blob/main/JianpuASCII.ttf).
 
-[See here for an example of the font in use](https://robertwinslow.github.io/jianpu-ascii-font/examples/songs/amazinggrace).
+[See here for an editable of the font in use](https://robertwinslow.github.io/jianpu-ascii-font/examples/songs/amazinggrace).
 
 <!--
 , and then used in any software that lets the user choose 
 TODO: Example with image.
 -->
 
-
-
-## What software does this work in?
-
-This method of rendering Jianpu musical scores relies only on basic font-rendering features,
-and as such should work basically anywhere.
-In my testing, this font renders correctly in the following software with the need for any settings tweaks: All major internet browsers, GIMP, Inkscape, and Libre Office, as well as Notes, Pages, and TextEdit on MacOS.<!--QGIS works too lol-->
-
-The only programs I've found in which this font doesn't work 'right out of the box'
-are Microsoft Office and MS Paint. 
-To get it working properly in Microsoft Word, two changes have to be made:
-- First, ligatures must be turned on in the advanced font options. (Highlight the text and open the dialog with ctrl+d).
-- Secondly, the "smart quotes" feature must be turned off, lest all the `'` characters be replaced with `‘` or `’`. (This option can be found in `File>Options > Proofing > AutoCorrect Options > AutoFormat As You Type`)
 
 
 
@@ -115,6 +104,75 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 
 
+
+
+
+## Download
+
+As mentioned above, 
+[the font file can can be downloaded from the GitHub repo](https://github.com/RobertWinslow/jianpu-ascii-font/blob/main/JianpuASCII.ttf),
+and then installed like any other font.
+
+There's also a [COLRv0 version of the font](https://github.com/RobertWinslow/jianpu-ascii-font/blob/main/colrJianpu.ttf),
+which displays notes in different colors.
+This was made mostly just to see whether I could, is a bit glitchier, and works in fewer applications,
+though it should at least work in every modern internet browser.
+
+
+
+## Usage
+
+For local use, like typing up a melody and printing it, you can just install the font,
+and then use it like any other (though see below for some settings changes that have to be made in MS Word.)
+
+For use on a website, just host the font file and apply it to a `pre` element using css.
+
+Simple Example:
+
+```
+<style>
+@font-face {
+    font-family: Jianpu;
+    src: url("path/to/JianpuASCII.ttf");
+}
+.jianpuBlock {
+    font-family: Jianpu;
+    line-height: 1.5;
+    font-size: 25px;
+}
+</style>
+<pre class="jianpuBlock">
+|1' - 6|5 - 5|1' - 3'/1'/|
+|4 - 4|3 - 3|3 - 5 |
+</pre>
+```
+
+
+
+### What software does this work in?
+
+This method of rendering Jianpu musical scores relies only on basic font-rendering features,
+and as such should work basically anywhere.
+In my testing, this font renders correctly in the following software with the need for any settings tweaks: All major internet browsers, GIMP, Inkscape, and Libre Office, as well as Notes, Pages, and TextEdit on MacOS. *(QGIS works too, though I can't imagine a situation where you'd want to put this stuff on a map.)*
+
+The only programs I've found in which this font doesn't work 'right out of the box'
+are Microsoft Office and MS Paint. 
+To get it working properly in Microsoft Word, two changes have to be made:
+- First, ligatures must be turned on in the advanced font options. (Highlight the text and open the dialog with ctrl+d).
+- Secondly, the "smart quotes" feature must be turned off, lest all the `'` characters be replaced with `‘` or `’`. (This option can be found in `File>Options > Proofing > AutoCorrect Options > AutoFormat As You Type`)
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Example
 
 The following block of text will just look like a mess if viewed as a README on Github,
@@ -127,9 +185,9 @@ then you'll see the same [rendition of Amazing Grace as is present on Wikipedia'
     src: url("JianpuASCII.ttf");
 }
 .jianpuBlock {
-    font-family: Jianpu !important;
-    line-height: 1.5 !important;
-    font-size: 30px !important;
+    font-family: Jianpu;
+    line-height: 1.5;
+    font-size: 30px;
 }
 </style>
 
@@ -169,6 +227,18 @@ And more complex musical notation may require more specialized typesetting softw
 - [Simp Erhu](https://simperhu.weebly.com/) is a plugin for Microsoft Word with many specialized symbols for use when playing the erhu. 
 - [jianpu-ly](https://github.com/ssb22/jianpu-ly) has its own convention for notating Jianpu in ASCII, but doesn't render the notation itself. Instead it converts the notation into a form which [Lilypond](https://lilypond.org/) can render.
 - [Fanqie Jianpu](http://zhipu.lezhi99.com/Zhipu-index.html) is a web interface for typing Jianpu, and can export the result as images.
+
+You may also be interested in [ABC Notation](https://abcnotation.com/wiki/abc:standard:v2.1#the_tune_body),
+which is a system of notating scores using ascii text. 
+The conventions of using `,` `'` to denote octave shifts comes from ABC notation, (though ABC also uses capital vs lowercase letters,)
+as does the use of `/``//` for note shortening and the prefixes `^``=``_` for accidentals.
+
+The use of `s``q` prefixes for note shortening is something I took from jianpu-ly.
+
+There are several other similarities between these notations and my syntax above, 
+but these are cases of convergent evolution rather than direct inspiration.
+
+
 
 
 ## License
