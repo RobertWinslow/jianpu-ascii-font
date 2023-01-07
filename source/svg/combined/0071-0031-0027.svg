@@ -3,5 +3,5 @@
 
 <ellipse fill="#e66980" rx="5" ry="5" cx="30" cy="20"/>
 
-<rect fill="#e66980" width="60" height="5" x="0" y="100"/>
+<rect fill="black" width="60" height="5" x="0" y="100"/>
 </svg>

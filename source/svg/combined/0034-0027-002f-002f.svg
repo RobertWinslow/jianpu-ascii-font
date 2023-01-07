@@ -3,6 +3,6 @@
 
 <ellipse fill="#87d989" rx="5" ry="5" cx="30" cy="20"/>
 
-<rect fill="#87d989" width="60" height="5" x="0" y="108"/>
-<rect fill="#87d989" width="60" height="5" x="0" y="100"/>
+<rect fill="black" width="60" height="5" x="0" y="108"/>
+<rect fill="black" width="60" height="5" x="0" y="100"/>
 </svg>

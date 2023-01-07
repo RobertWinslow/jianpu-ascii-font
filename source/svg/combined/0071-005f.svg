@@ -4,5 +4,5 @@
 <path fill="#000" stroke="none" d="m 45 81 a8 18 30 1 0 1 -30  v2  a4.4 8 25 1 1 -1 25z"/>
 </g>
 
-<rect fill="#000" width="60" height="5" x="0" y="100"/>
+<rect fill="black" width="60" height="5" x="0" y="100"/>
 </svg>

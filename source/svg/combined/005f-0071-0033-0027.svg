@@ -9,5 +9,5 @@
 
 <ellipse fill="#f7ce50" rx="5" ry="5" cx="30" cy="20"/>
 
-<rect fill="#f7ce50" width="60" height="5" x="0" y="100"/>
+<rect fill="black" width="60" height="5" x="0" y="100"/>
 </svg>

@@ -48,7 +48,7 @@ COLORS_LOW = {
     '7': '#652277'
 }
 
-BLACKUNDERLINES = False
+BLACKUNDERLINES = True
 
 
 #%%

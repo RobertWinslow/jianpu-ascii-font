@@ -7,8 +7,8 @@
 
 <path fill="#176a1e" d="m5,15 m32.6 80v-17.6h-32.9v-5.5l31.9-40.7h8.8v39.6h9.9v6.6h-9.9v17.6zm-23.8-24.2h23.8v-19.8q.1-2.6.2-5.6.1-3.1.3-5.7h-.5q-1.5 2.3-3.2 4.7-1.7 2.3-3.3 4.6z"/>
 
-<rect fill="#176a1e" width="60" height="5" x="0" y="108"/>
-<rect fill="#176a1e" width="60" height="5" x="0" y="100"/>
+<rect fill="black" width="60" height="5" x="0" y="108"/>
+<rect fill="black" width="60" height="5" x="0" y="100"/>
 <ellipse fill="#176a1e" rx="5" ry="5" cx="30" cy="121"/>
 <ellipse fill="#176a1e" rx="5" ry="5" cx="30" cy="136"/>
 </svg>

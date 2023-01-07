@@ -6,5 +6,5 @@
 <path fill="#000" d="m 46 42 v5 l8,-4 v-5  z"/>
 </g>
 
-<rect fill="#000" width="60" height="5" x="0" y="100"/>
+<rect fill="black" width="60" height="5" x="0" y="100"/>
 </svg>

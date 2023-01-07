@@ -2,6 +2,6 @@
 <path stroke="#000" stroke-width="6" d="m15,35 l30,50"/>
 <path stroke="#000" stroke-width="6" d="m45,35 l-30,50"/>
 
-<rect fill="#000" width="60" height="5" x="0" y="108"/>
-<rect fill="#000" width="60" height="5" x="0" y="100"/>
+<rect fill="black" width="60" height="5" x="0" y="108"/>
+<rect fill="black" width="60" height="5" x="0" y="100"/>
 </svg>
