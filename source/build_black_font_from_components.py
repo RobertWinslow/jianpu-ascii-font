@@ -181,7 +181,7 @@ for digit in ['x','0','period', 'flat','sharp','natural','hash','b','cdot']: #'s
     addSubs(char, digit, before=("doubleUnderline"))
     addSubs(char, digit, after=("slash","slash"))
     
-for accident in ["","sharp","flat"]:
+for accident in ["","sharp","flat","natural"]:
   for digit in ['1','2','3','4','5','6','7',]:
     # Single underline for quaver
     char = createLigBase(digit, '_Quaver', accident=accident)
