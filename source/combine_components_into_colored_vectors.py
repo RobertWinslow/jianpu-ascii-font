@@ -157,6 +157,9 @@ for c in ['x','.','#','b','^','_','=','*',]:
     createPermutationFiles(svg,c,'s','')
 
 # special case for 0
+#Standalone Note
+svg = buildSVG(['0',], color=COLORS['0'])
+createPermutationFiles(svg,'0','','')
 # Single underline for quaver
 svg = buildSVG(['0','underline'], color=COLORS['0'])
 createPermutationFiles(svg,'0','','/')
