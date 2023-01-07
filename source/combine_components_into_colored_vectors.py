@@ -1,14 +1,11 @@
 
-# For the sake of making the build 
-# For the sake of making the build process as easy as possible,
-# I don't use combining diacritics for the dots and underlines in Jianpu notation.
-# I simply manually make a glyph for each combination of components.
-# In addition to standalone characters, I need to make the following combinatoric characters:
-# - 7 characters for notes
-# - Three possibilities for underlines (none, one, or two)
-# - five possibilities for dots (none, one above, two above, one below, two below)
-# That's only 105 total combos. A reasonably small number.
-# Also zero width characters for sharps and flats?
+# This explicitly builds all the combos I need, 
+# creating an SVG file for each codepoint.
+# Why do this?
+# I want to make a colr font using the Nanoemoji tool.
+# This accepts as inputs SVG with codepoint ligatures as their filenames.
+# By explicitly generating every vector, it becomes really easy to work with nanoemoji.
+# (nanoemoji's build process is intelligent enough to reuse shared geometry, so the file size of the end font won't be too large.)
 
 #%% IMPORTS AND PARAMETERS
 import os
