@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 60 150" xmlns="http://www.w3.org/2000/svg">
+<g transform="matrix(0.9 0 0 0.9 -45 0)">
+<path fill="#bf344b" d="m 45 80 l 2 -1 v-55 l -2 1 z"/>
+<path fill="#bf344b" stroke="none" d="m 45 81 a8 18 30 1 0 1 -30  v2  a4.4 8 25 1 1 -1 25z"/>
+</g>
+
+
+<path fill="#bf344b" d="m5,15 m3.35 80v-6.8h18.4v-47h-14.3v-5.3q5.7-.8 9.5-1.9t6.9-2.8h6.1v57h16.7v6.8z"/>
+
+<rect fill="#bf344b" width="60" height="5" x="0" y="108"/>
+<rect fill="#bf344b" width="60" height="5" x="0" y="100"/>
+</svg>

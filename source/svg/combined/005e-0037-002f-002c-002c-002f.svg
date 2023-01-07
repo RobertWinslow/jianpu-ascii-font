@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 60 150" xmlns="http://www.w3.org/2000/svg">
+<g transform="matrix(0.9 0 0 0.9 -45 0)">
+<path fill="#652277" d="m 40 45 v5 l20,-10 v-5  z"/>
+<path fill="#652277" d="m 40 65 v-5 l20,-10 v5  z"/>
+<path fill="#652277" d="m 45 80 l 2 -1 v-55 l -2 1 z"/>
+<path fill="#652277" d="m 53 76 l 2 -1 v-55 l -2 1 z"/>
+</g>
+
+<path fill="#652277" d="m5,15 m17.6 80q.4-9.1 1.7-16.5 1.3-7.5 3.8-14.2t6.3-13q3.9-6.3 9.4-13h-36.8v-7.1h46.2v5.1q-6.3 7.2-10.4 13.8t-6.6 13.5q-2.5 6.8-3.6 14.4t-1.4 17z"/>
+
+<rect fill="#652277" width="60" height="5" x="0" y="108"/>
+<rect fill="#652277" width="60" height="5" x="0" y="100"/>
+<ellipse fill="#652277" rx="5" ry="5" cx="30" cy="121"/>
+<ellipse fill="#652277" rx="5" ry="5" cx="30" cy="136"/>
+</svg>
