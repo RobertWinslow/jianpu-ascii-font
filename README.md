@@ -233,9 +233,9 @@ And more complex musical notation may require more specialized typesetting softw
 You may also be interested in [ABC Notation](https://abcnotation.com/wiki/abc:standard:v2.1#the_tune_body),
 which is a system of notating scores using ascii text. 
 The conventions of using `,` `'` to denote octave shifts comes from ABC notation, (though ABC also uses capital vs lowercase letters,)
-as does the use of `/``//` for note shortening and the prefixes `^``=``_` for accidentals.
+as does the use of `/` `//` for note shortening and the prefixes `^` `=` `_` for accidentals.
 
-The use of `s``q` prefixes for note shortening is something I took from jianpu-ly.
+The use of `s` `q` prefixes for note shortening is something I took from jianpu-ly.
 
 There are several other similarities between these notations and my syntax above, 
 but these are cases of convergent evolution rather than direct inspiration.
