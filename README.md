@@ -119,6 +119,8 @@ This was made mostly just to see whether I could, is a bit glitchier, and works 
 though it should at least work in every modern internet browser.
 
 
+![The colored version of the font, all notes demonstrated.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuColr.PNG)
+
 
 ## Usage
 
