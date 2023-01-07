@@ -111,6 +111,7 @@ def buildSVG(componentNameList, color='#000'):
     svg = svg + ''.join([pathDict[component] for component in componentNameList])
     svg = svg + SVGEND
     svg = svg.replace('#000',color)
+    svg = svg.replace('black',color)
     return svg
 
 def createBasicFile(character, component):
