@@ -12,6 +12,8 @@ https://github.com/RobertWinslow/Simple-SVG-to-Font-with-Fontforge
 
 See here for documentation about FontForge's scripting library:
 https://fontforge.org/docs/scripting/python/fontforge.html
+
+Script (c) 2022 Robert Winslow. CC BY-SA. See: https://github.com/RobertWinslow/Simple-SVG-to-Font-with-Fontforge
 '''
 
 
