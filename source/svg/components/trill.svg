@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Attribution: based on "Trill notation (cropped tr).svg" from Wikimedia Commons,
+    by Camembert and Joaopaulo1511; cropped by Denis Gagne52:
+    https://commons.wikimedia.org/wiki/File:Trill_notation_(cropped_tr).svg
+    Released into the public domain by Joaopaulo1511.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="150" viewBox="0 0 60 150">
+    <g transform="translate(-125,50) scale(.1)">
+        <path d="M1337 324c0-15 6-29 19-40s29-16 49-16c21 0 40 6 58 17l33-164c5 3 10 4 14 4 14 0 31-8 48-25l-38 188 46-25c17-9 34-14 52-14 22 0 37 6 45 20 13-15 29-22 49-22 14 0 26 4 35 13s14 21 14 36c0 16-5 31-14 44s-19 20-32 20c-9 0-15-3-20-10-5-6-7-14-7-24 0-16 4-28 14-35 8-7 18-11 29-11h2c-5-9-14-14-27-14-9 0-18 3-25 9-7 5-12 13-15 22l-38 191c-7-6-16-8-26-8-9 0-20 2-31 8l39-191v-5c0-12-7-19-21-19-5 0-11 2-17 5l-56 31-5 22c24 27 35 53 35 78 0 21-7 39-20 56-14 16-30 25-49 25-13 0-23-7-29-19-7-13-10-28-10-46 0-12 1-22 3-29l10-54c-29 12-53 18-71 18-16 0-27-3-33-11-7-7-10-16-10-25zm18-2c0 14 9 20 28 20s44-6 72-19l4-17c-19-14-38-21-58-21-15 0-27 4-35 12-7 7-11 16-11 25zm139 112c0 13 3 20 10 20s13-4 18-13 7-19 7-29c0-18-8-36-23-56l-3 19c-6 27-9 46-9 59z"/>
+    </g>
+</svg>

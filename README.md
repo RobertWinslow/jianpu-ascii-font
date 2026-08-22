@@ -6,7 +6,7 @@ but rather a very simple way of rendering notation in a word-processor or person
 
 [The font file can can be downloaded from the GitHub repo](https://github.com/RobertWinslow/jianpu-ascii-font/blob/main/JianpuASCII.ttf).
 
-[See here for an editable of the font in use](https://robertwinslow.github.io/jianpu-ascii-font/examples/songs/amazinggrace).
+[See here for an editable example of the font in use](https://robertwinslow.github.io/jianpu-ascii-font/examples/songs/amazinggrace).
 
 <!--
 , and then used in any software that lets the user choose 
@@ -87,6 +87,22 @@ Below is a list of jianpu features implemented in this font and how to use them.
 ![An illustration of ties and slurs and tuplets.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuTupletsSlurs.PNG)
 
 
+- `H` is a fermata symbol
+- `T` is a trill symbol.
+- lowercase `t` is a tremolo symbol.
+- a curly brace `{` is used for an arpeggio symbol. 
+<!-- And } is the same symbol but mirrored-->
+<!-- The next version will overload {} to serve multiple purposes. -->
+
+<pre>
+   T H
+|1 2 3 4t|{5 6 7  |
+</pre>
+
+![An illustration of some special symbols, including fermata, trill, etc.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuAccents.PNG)
+
+
+
 
 <!--prepending underscores also works for underlines-->
 
@@ -117,6 +133,8 @@ There's also a [COLRv0 version of the font](https://github.com/RobertWinslow/jia
 which displays notes in different colors.
 This was made mostly just to see whether I could, is a bit glitchier, and works in fewer applications,
 though it should at least work in every modern internet browser.
+
+<!-- TODO: Update color version to latest version. -->
 
 
 ![The colored version of the font, all notes demonstrated.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuColr.PNG)
@@ -243,13 +261,20 @@ but these are cases of convergent evolution rather than direct inspiration.
 
 
 
-## License
+## License and Attribution
 
 This font is released under the SIL Open Font License.
 
 Note that this font is a derivative work of the font with Reserved Font Name 'Source', Copyright © Adobe Systems Incorporated 2010, 2012.
 In particular, it uses the numerals `0123456789` from "Source Code Pro", by Paul D. Hunt, 
 downloaded from Google Fonts here: [https://fonts.google.com/specimen/Source+Code+Pro](https://fonts.google.com/specimen/Source+Code+Pro)
+
+A few of the glyphs are sourced from public domain SVG files on Wikimedia Commons. Namely:
+
+- [Arpeggio](https://commons.wikimedia.org/wiki/File:Arpeggio.svg)
+- [Fermata](https://commons.wikimedia.org/wiki/File:Fermata.svg)
+- [Trill](https://commons.wikimedia.org/wiki/File:Trill_notation_(cropped_tr).svg)
+
 
 <!--
 http://anuccme.com/jianpu

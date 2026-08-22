@@ -27,8 +27,8 @@ OUTPUTFILENAME = '../JianpuASCII.ttf'
 font = fontforge.font()
 font.familyname = "Jianpu Ascii"
 font.fullname = font.familyname
-font.copyright = "SIL OFL. Created 2022 by Robert Martin Winslow" #eg Copyright (c) 2022 Name
-font.version = "2.3"
+font.copyright = "SIL OFL. Created 2026 by Robert Martin Winslow" #eg Copyright (c) 2022 Name
+font.version = "2.4"
 
 # The following variables are for scaling the imported outlines.
 SVGHEIGHT = 150 # units of height of source svg viewbox.
@@ -94,6 +94,14 @@ createBasicCharacter('005b','tupletLeft','tupletLeft')
 createBasicCharacter('005d','tupletRight','tupletRight')
 createBasicCharacter('0028','slurLeft','slurLeft')
 createBasicCharacter('0029','slurRight','slurRight')
+
+createBasicCharacter('0048','fermata','fermata')#H
+createBasicCharacter('0054','trill','trill')#T
+createBasicCharacter('0074','tremolo','tremolo')#t
+createBasicCharacter('007b','arpeggioLeft','arpeggio') #{
+arpeggioRight = font.createChar(int('007d', 16), 'arpeggioRight') #}, implemented as a reflected version of the { glyph.
+arpeggioRight.addReference('arpeggioLeft', (-1,0,0,1,MONOSPACEWIDTH,0))
+
 spaceChar = font.createChar(32, 'space')
 spaceChar.width = SPACEWIDTH
 

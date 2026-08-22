@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    Attribution: based on "Fermata.svg" from Wikimedia Commons,
+    uploaded by Super Rad!, 29 September 2006:
+    https://commons.wikimedia.org/wiki/File:Fermata.svg
+    Released into the public domain by the copyright holder.
+-->
+<svg
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.0"
+    width="60"
+    height="150"
+    viewBox="0 0 60 150"
+    id="svg2">
+    <defs
+        id="defs4" />
+    <g transform="translate(0,55) scale(0.12,0.12)">
+        <path
+            d="M 290,457.36218 C 290,471.1693 281.04569,482.36218 270,482.36218 C 258.95431,482.36218 250,471.1693 250,457.36218 C 250,443.55506 258.95431,432.36218 270,432.36218 C 281.04569,432.36218 290,443.55506 290,457.36218 L 290,457.36218 z "
+            transform="translate(-391.25,-445.376) scale(2.375,1.9)"
+            style="opacity:1;fill:black;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.559017;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+            id="path1884" />
+        <path
+            d="M 15,467.36218 C 35,332.36218 130,212.36218 250,212.36218 C 370,212.36218 465,332.36218 485,467.36218 C 486,472.36218 461,472.36218 460,467.36218 C 435,372.36218 370,282.36218 250,282.36218 C 130,282.36218 65,372.36218 40,467.36218 C 39,472.36218 14,472.36218 15,467.36218 z "
+            style="fill:black"
+            id="path2772" />
+    </g>
+</svg>
