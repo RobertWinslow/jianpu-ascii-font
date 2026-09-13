@@ -13,7 +13,7 @@ https://github.com/RobertWinslow/Simple-SVG-to-Font-with-Fontforge
 See here for documentation about FontForge's scripting library:
 https://fontforge.org/docs/scripting/python/fontforge.html
 
-Script (c) 2022 Robert Winslow. CC BY-SA. See: https://github.com/RobertWinslow/Simple-SVG-to-Font-with-Fontforge
+Script (c) 2026 Robert Winslow. CC BY-SA. See: https://github.com/RobertWinslow/Simple-SVG-to-Font-with-Fontforge
 '''
 
 
@@ -28,7 +28,7 @@ font = fontforge.font()
 font.familyname = "Jianpu Ascii"
 font.fullname = font.familyname
 font.copyright = "SIL OFL. Created 2026 by Robert Martin Winslow" #eg Copyright (c) 2022 Name
-font.version = "2.4"
+font.version = "3.0"
 
 # The following variables are for scaling the imported outlines.
 SVGHEIGHT = 150 # units of height of source svg viewbox.
@@ -40,6 +40,17 @@ UNITSABOVEBASELINE = 950
 MONOSPACEWIDTH = 600
 # If the following parameter is set to a positive integer, a blank 'space' character is included in the font.
 SPACEWIDTH = MONOSPACEWIDTH
+
+# The following variables are for single-line chords.
+# These variables determine the scale and vertical offset of each note in the chord.
+COMPACTCHORDSCALE = {2: 0.63, 3: 0.46, 4: 0.36}
+COMPACTCHORDPOSITION = {
+    2: [440, -390],
+    3: [600, 80, -440],
+    4: [700, 310, -80, -470],
+}
+
+
 
 
 #%% SECTION TWO A - Define function for importing outlines.
@@ -289,6 +300,95 @@ for accident in ["","sharp","flat","natural"]:
 #%% SECTION THREE - Adjust some of the font's global properties.
 for char in font.glyphs():
     char.width = MONOSPACEWIDTH
+
+
+#%% SECTION FOUR - Compact single-line chords using contextual GSUB Lookup Tables.
+# This is new to version 3 of the font. 
+# If 2-4 notes are written between square brackets, they will be stacked and scaled down to fit in a single line.
+# Examples: [123] [1,3,,] [7'52]
+
+chordAtoms = []
+for accident in ["", "sharp", "flat", "natural"]:
+    for digit in ['1','2','3','4','5','6','7']:
+        for suffix in ['','up','upTwo','down','downTwo']:
+            chordAtoms.append(digit+accident+suffix)
+
+# This block creates a lookup table for each shrunken position that a note can occupy within a chord.
+def addChordSlotLookup(lookupName, glyphSuffix, chordCount, yPosition, advances=False):
+    font.addLookup(lookupName, 'gsub_single', None, ())
+    subtableName = lookupName + 'Subtable'
+    font.addLookupSubtable(lookupName, subtableName)
+
+    scale   = COMPACTCHORDSCALE[chordCount]
+    yOffset = COMPACTCHORDPOSITION[chordCount][yPosition]
+    xOffset = MONOSPACEWIDTH * (1 - scale) / 2
+
+    for atomName in chordAtoms:
+        positionedName = atomName + '_' + glyphSuffix
+        positionedGlyph = font.createChar(-1, positionedName)
+        positionedGlyph.addReference(atomName, (scale,0,0,scale,xOffset,yOffset))
+        positionedGlyph.width = MONOSPACEWIDTH if advances else 0
+        font[atomName].addPosSub(subtableName, positionedName)
+    return lookupName
+
+addChordSlotLookup('quadChordTop',      'c4Top',    4, 0,)
+addChordSlotLookup('quadChordUpperMid', 'c4Upper',  4, 1,)
+addChordSlotLookup('quadChordLowerMid', 'c4Lower',  4, 2,)
+addChordSlotLookup('quadChordBottom',   'c4Bottom', 4, 3, advances=True)
+
+addChordSlotLookup('tripleChordTop',    'c3Top',    3, 0,)
+addChordSlotLookup('tripleChordMiddle', 'c3Middle', 3, 1,)
+addChordSlotLookup('tripleChordBottom', 'c3Bottom', 3, 2, advances=True)
+
+addChordSlotLookup('doubleChordTop',    'c2Top',    2, 0,)
+addChordSlotLookup('doubleChordBottom', 'c2Bottom', 2, 1, advances=True)
+
+
+# This mystical incantation creates a zero-width character to hide the brackets around chords.
+hiddenChordBracket = font.createChar(-1, 'hiddenChordBracket')
+hiddenChordBracket.width = 0
+font.addLookup('hideChordBracketsLookup', 'gsub_single', None, (),)
+font.addLookupSubtable('hideChordBracketsLookup', 'hideChordBracketsSubtable')
+font['tupletLeft'].addPosSub('hideChordBracketsSubtable', 'hiddenChordBracket')
+font['tupletRight'].addPosSub('hideChordBracketsSubtable', 'hiddenChordBracket')
+
+
+# This block strings together the above lookup rules 
+# to create contextual substitution subtables for each type of chord.
+# The last argument is a rule string, which is a succession of [list of glyphs] @<lookupTable> pairs.
+# If one item from each list is found in a sequence within the text, then the font applies the lookup tables to each glyph.
+
+font.addLookup(
+    'chordContextualLookup', 'gsub_context', None,
+    (("liga",(('DFLT',("dflt")),)),), 
+    'myLookup' # This is the after_lookup_name parameter. The chordCL needs to happen after the ordinary ligature substitutions.
+)
+chordAtomCoverageString = '[' + ' '.join(chordAtoms) + ']'
+
+font.addContextualSubtable(
+    'chordContextualLookup', 'quadChordCL', 'coverage',
+    f'''[tupletLeft] @<hideChordBracketsLookup>
+        {chordAtomCoverageString} @<quadChordTop>
+        {chordAtomCoverageString} @<quadChordUpperMid>
+        {chordAtomCoverageString} @<quadChordLowerMid>
+        {chordAtomCoverageString} @<quadChordBottom>
+        [tupletRight] @<hideChordBracketsLookup>'''
+)
+font.addContextualSubtable(
+    'chordContextualLookup', 'tripleChordCL', 'coverage',
+    f'''[tupletLeft] @<hideChordBracketsLookup>
+        {chordAtomCoverageString} @<tripleChordTop>
+        {chordAtomCoverageString} @<tripleChordMiddle>
+        {chordAtomCoverageString} @<tripleChordBottom>
+        [tupletRight] @<hideChordBracketsLookup>''',
+)
+font.addContextualSubtable(
+    'chordContextualLookup', 'doubleChordCL', 'coverage',
+    f'''[tupletLeft] @<hideChordBracketsLookup>
+        {chordAtomCoverageString} @<doubleChordTop>
+        {chordAtomCoverageString} @<doubleChordBottom>
+        [tupletRight] @<hideChordBracketsLookup>''',
+)
 
 
 #%% FINALLY - Generate the font
