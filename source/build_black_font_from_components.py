@@ -28,7 +28,7 @@ font = fontforge.font()
 font.familyname = "Jianpu Ascii"
 font.fullname = font.familyname
 font.copyright = "SIL OFL. Created 2026 by Robert Martin Winslow" #eg Copyright (c) 2022 Name
-font.version = "3.0"
+font.version = "3.1"
 
 # The following variables are for scaling the imported outlines.
 SVGHEIGHT = 150 # units of height of source svg viewbox.
@@ -343,14 +343,29 @@ addChordSlotLookup('tripleChordBottom', 'c3Bottom', 3, 2, advances=True)
 addChordSlotLookup('doubleChordTop',    'c2Top',    2, 0,)
 addChordSlotLookup('doubleChordBottom', 'c2Bottom', 2, 1, advances=True)
 
+addChordSlotLookup('graceNote',         'grace',    2, 0, advances=True)
+
+
 
 # This mystical incantation creates a zero-width character to hide the brackets around chords.
 hiddenChordBracket = font.createChar(-1, 'hiddenChordBracket')
 hiddenChordBracket.width = 0
-font.addLookup('hideChordBracketsLookup', 'gsub_single', None, (),)
-font.addLookupSubtable('hideChordBracketsLookup', 'hideChordBracketsSubtable')
-font['tupletLeft'].addPosSub('hideChordBracketsSubtable', 'hiddenChordBracket')
-font['tupletRight'].addPosSub('hideChordBracketsSubtable', 'hiddenChordBracket')
+
+arpeggioChordBracket = font.createChar(-1, 'arpeggioChordBracket')
+importAndCleanOutlines(f'{INPUTFOLDER}/arpeggio-bar.svg', arpeggioChordBracket)
+arpeggioChordBracket.width = 0
+
+font.addLookup('chordBracketsLookup', 'gsub_single', None, (),)
+font.addLookupSubtable('chordBracketsLookup', 'chordBracketsSubtable')
+font['tupletLeft'].addPosSub('chordBracketsSubtable', 'hiddenChordBracket')
+font['tupletRight'].addPosSub('chordBracketsSubtable', 'hiddenChordBracket')
+font['arpeggioLeft'].addPosSub('chordBracketsSubtable', 'arpeggioChordBracket')
+font['arpeggioRight'].addPosSub('chordBracketsSubtable', 'hiddenChordBracket')
+
+# And here's a second little snippet so that {1} renders as a grace note (shrunken and elevated)
+font.addLookup('hideArpeggioLookup', 'gsub_single', None, (),)
+font.addLookupSubtable('hideArpeggioLookup', 'hideArpeggioSubtable')
+font['arpeggioLeft'].addPosSub('hideArpeggioSubtable', 'hiddenChordBracket')
 
 
 # This block strings together the above lookup rules 
@@ -367,27 +382,33 @@ chordAtomCoverageString = '[' + ' '.join(chordAtoms) + ']'
 
 font.addContextualSubtable(
     'chordContextualLookup', 'quadChordCL', 'coverage',
-    f'''[tupletLeft] @<hideChordBracketsLookup>
+    f'''[tupletLeft arpeggioLeft] @<chordBracketsLookup>
         {chordAtomCoverageString} @<quadChordTop>
         {chordAtomCoverageString} @<quadChordUpperMid>
         {chordAtomCoverageString} @<quadChordLowerMid>
         {chordAtomCoverageString} @<quadChordBottom>
-        [tupletRight] @<hideChordBracketsLookup>'''
+        [tupletRight arpeggioRight] @<chordBracketsLookup>'''
 )
 font.addContextualSubtable(
     'chordContextualLookup', 'tripleChordCL', 'coverage',
-    f'''[tupletLeft] @<hideChordBracketsLookup>
+    f'''[tupletLeft arpeggioLeft] @<chordBracketsLookup>
         {chordAtomCoverageString} @<tripleChordTop>
         {chordAtomCoverageString} @<tripleChordMiddle>
         {chordAtomCoverageString} @<tripleChordBottom>
-        [tupletRight] @<hideChordBracketsLookup>''',
+        [tupletRight arpeggioRight] @<chordBracketsLookup>''',
 )
 font.addContextualSubtable(
     'chordContextualLookup', 'doubleChordCL', 'coverage',
-    f'''[tupletLeft] @<hideChordBracketsLookup>
+    f'''[tupletLeft arpeggioLeft] @<chordBracketsLookup>
         {chordAtomCoverageString} @<doubleChordTop>
         {chordAtomCoverageString} @<doubleChordBottom>
-        [tupletRight] @<hideChordBracketsLookup>''',
+        [tupletRight arpeggioRight] @<chordBracketsLookup>''',
+)
+font.addContextualSubtable(
+    'chordContextualLookup', 'graceChordCL', 'coverage',
+    f'''[arpeggioLeft] @<hideArpeggioLookup>
+        {chordAtomCoverageString} @<graceNote>
+        [arpeggioRight] @<chordBracketsLookup>''',
 )
 
 
