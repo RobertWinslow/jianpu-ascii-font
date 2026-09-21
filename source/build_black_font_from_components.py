@@ -28,7 +28,7 @@ font = fontforge.font()
 font.familyname = "Jianpu Ascii"
 font.fullname = font.familyname
 font.copyright = "SIL OFL. Created 2026 by Robert Martin Winslow" #eg Copyright (c) 2022 Name
-font.version = "3.1"
+font.version = "3.2"
 
 # The following variables are for scaling the imported outlines.
 SVGHEIGHT = 150 # units of height of source svg viewbox.
@@ -43,11 +43,11 @@ SPACEWIDTH = MONOSPACEWIDTH
 
 # The following variables are for single-line chords.
 # These variables determine the scale and vertical offset of each note in the chord.
-COMPACTCHORDSCALE = {2: 0.8, 3: 0.6, 4: 0.5}
+COMPACTCHORDSCALE = {2: 1, 3: 0.7, 4: 0.5}
 COMPACTCHORDPOSITION = {
-    2: [600, -200],
-    3: [750, 200, -350],
-    4: [850, 400, -50, -500],
+    2: [850, 0],
+    3: [950, 350, -250],
+    4: [1050, 600, 150, -300],
 }
 
 
@@ -343,7 +343,7 @@ addChordSlotLookup('tripleChordBottom', 'c3Bottom', 3, 2, advances=True)
 addChordSlotLookup('doubleChordTop',    'c2Top',    2, 0,)
 addChordSlotLookup('doubleChordBottom', 'c2Bottom', 2, 1, advances=True)
 
-addChordSlotLookup('graceNote',         'grace',    2, 0, advances=True)
+addChordSlotLookup('graceNote',         'grace',    3, 1, advances=True)
 
 
 
