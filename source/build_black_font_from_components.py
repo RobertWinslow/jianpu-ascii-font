@@ -28,7 +28,7 @@ font = fontforge.font()
 font.familyname = "Jianpu Ascii"
 font.fullname = font.familyname
 font.copyright = "SIL OFL. Created 2026 by Robert Martin Winslow" #eg Copyright (c) 2022 Name
-font.version = "3.2"
+font.version = "3.3"
 
 # The following variables are for scaling the imported outlines.
 SVGHEIGHT = 150 # units of height of source svg viewbox.
@@ -191,13 +191,13 @@ DOTSHIFTFROMLINE = 80
 # I like how the cursor is rendered part-way through the glyph when in the middle of a ligature sequence.
 for digit in ['x','0','period', 'flat','sharp','natural','hash','b','cdot']: #'space',
     # Single underline for quaver
-    char = createLigBase(digit, '_Quaver')
+    char = createLigBase(digit, 'Quaver')
     char.addReference('underline', (1,0,0,1,0,0))
     addSubs(char, digit, before=('underline'))
     addSubs(char, digit, after=("slash"))
     
     # double underline for a semiquaver
-    char = createLigBase(digit, '_Semiquaver')
+    char = createLigBase(digit, 'Semiquaver')
     char.addReference('doubleUnderline', (1,0,0,1,0,0))
     addSubs(char, digit, before=("doubleUnderline"))
     addSubs(char, digit, after=("slash","slash"))
@@ -205,13 +205,13 @@ for digit in ['x','0','period', 'flat','sharp','natural','hash','b','cdot']: #'s
 for accident in ["","sharp","flat","natural"]:
   for digit in ['1','2','3','4','5','6','7',]:
     # Single underline for quaver
-    char = createLigBase(digit, '_Quaver', accident=accident)
+    char = createLigBase(digit, 'Quaver', accident=accident)
     char.addReference('underline', (1,0,0,1,0,0))
     addSubs(char, digit, before=('underline'), accident=accident)
     addSubs(char, digit, after=("slash"), accident=accident)
     
     # double underline for a semiquaver
-    char = createLigBase(digit, '_Semiquaver', accident=accident)
+    char = createLigBase(digit, 'Semiquaver', accident=accident)
     char.addReference('doubleUnderline', (1,0,0,1,0,0))
     addSubs(char, digit, before=("doubleUnderline"), accident=accident)
     addSubs(char, digit, after=("slash","slash"), accident=accident)
@@ -271,25 +271,25 @@ for accident in ["","sharp","flat","natural"]:
     
     
     # Up one octave with a single underline
-    char = createLigBase(digit+accident+'up', 'Quaver', accident=accident)
+    char = createLigBase(digit+accident+'up', 'Quaver')
     char.addReference('underline')
     addSubs(char, digit, before=('underline',), after=("prime"), accident=accident)
     addSubs(char, digit, after=("slash","prime"), accident=accident)
     
     # Up two octaves with a single underline
-    char = createLigBase(digit+accident+'upTwo', 'Quaver', accident=accident)
+    char = createLigBase(digit+accident+'upTwo', 'Quaver')
     char.addReference('underline')
     addSubs(char, digit, before=('underline',), after=("prime","prime"), accident=accident)
     addSubs(char, digit, after=("slash","prime","prime"), accident=accident)
     
     # Up one octave with a double underline
-    char = createLigBase(digit+accident+'up', 'Semiquaver', accident=accident)
+    char = createLigBase(digit+accident+'up', 'Semiquaver')
     char.addReference('doubleUnderline')
     addSubs(char, digit, before=('doubleUnderline',), after=("prime"), accident=accident)
     addSubs(char, digit, after=("slash","slash","prime"), accident=accident)
     
     # Up two octaves with a double underline
-    char = createLigBase(digit+accident+'upTwo', 'Semiquaver', accident=accident)
+    char = createLigBase(digit+accident+'upTwo', 'Semiquaver')
     char.addReference('doubleUnderline')
     addSubs(char, digit, before=('doubleUnderline',), after=("prime","prime"), accident=accident)
     addSubs(char, digit, after=("slash","slash","prime","prime"), accident=accident)
@@ -313,8 +313,15 @@ for accident in ["", "sharp", "flat", "natural"]:
         for suffix in ['','up','upTwo','down','downTwo']:
             chordAtoms.append(digit+accident+suffix)
 
+chordAtomsWithUnderlines = []
+for underline in ['','Quaver','Semiquaver']:
+    for atom in chordAtoms:
+        chordAtomsWithUnderlines.append(atom+underline)
+
+
+
 # This block creates a lookup table for each shrunken position that a note can occupy within a chord.
-def addChordSlotLookup(lookupName, glyphSuffix, chordCount, yPosition, advances=False):
+def addChordSlotLookup(lookupName, glyphSuffix, chordCount, yPosition, advances=False, includesUnderlines=False):
     font.addLookup(lookupName, 'gsub_single', None, ())
     subtableName = lookupName + 'Subtable'
     font.addLookupSubtable(lookupName, subtableName)
@@ -323,7 +330,8 @@ def addChordSlotLookup(lookupName, glyphSuffix, chordCount, yPosition, advances=
     yOffset = COMPACTCHORDPOSITION[chordCount][yPosition]
     xOffset = MONOSPACEWIDTH * (1 - scale) / 2
 
-    for atomName in chordAtoms:
+    atomList = chordAtomsWithUnderlines if includesUnderlines else chordAtoms
+    for atomName in atomList:
         positionedName = atomName + '_' + glyphSuffix
         positionedGlyph = font.createChar(-1, positionedName)
         positionedGlyph.addReference(atomName, (scale,0,0,scale,xOffset,yOffset))
@@ -341,9 +349,9 @@ addChordSlotLookup('tripleChordMiddle', 'c3Middle', 3, 1,)
 addChordSlotLookup('tripleChordBottom', 'c3Bottom', 3, 2, advances=True)
 
 addChordSlotLookup('doubleChordTop',    'c2Top',    2, 0,)
-addChordSlotLookup('doubleChordBottom', 'c2Bottom', 2, 1, advances=True)
+addChordSlotLookup('doubleChordBottom', 'c2Bottom', 2, 1, advances=True, includesUnderlines=True)
 
-addChordSlotLookup('graceNote',         'grace',    3, 1, advances=True)
+addChordSlotLookup('graceNote',         'grace',    3, 1, advances=True, includesUnderlines=True)
 
 
 
@@ -379,6 +387,7 @@ font.addLookup(
     'myLookup' # This is the after_lookup_name parameter. The chordCL needs to happen after the ordinary ligature substitutions.
 )
 chordAtomCoverageString = '[' + ' '.join(chordAtoms) + ']'
+chordAtomCoverageStringWithUnderlines = '[' + ' '.join(chordAtomsWithUnderlines) + ']'
 
 font.addContextualSubtable(
     'chordContextualLookup', 'quadChordCL', 'coverage',
@@ -401,13 +410,13 @@ font.addContextualSubtable(
     'chordContextualLookup', 'doubleChordCL', 'coverage',
     f'''[tupletLeft arpeggioLeft] @<chordBracketsLookup>
         {chordAtomCoverageString} @<doubleChordTop>
-        {chordAtomCoverageString} @<doubleChordBottom>
+        {chordAtomCoverageStringWithUnderlines} @<doubleChordBottom>
         [tupletRight arpeggioRight] @<chordBracketsLookup>''',
 )
 font.addContextualSubtable(
     'chordContextualLookup', 'graceChordCL', 'coverage',
     f'''[arpeggioLeft] @<hideArpeggioLookup>
-        {chordAtomCoverageString} @<graceNote>
+        {chordAtomCoverageStringWithUnderlines} @<graceNote>
         [arpeggioRight] @<chordBracketsLookup>''',
 )
 
