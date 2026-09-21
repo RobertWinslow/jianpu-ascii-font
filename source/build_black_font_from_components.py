@@ -43,11 +43,11 @@ SPACEWIDTH = MONOSPACEWIDTH
 
 # The following variables are for single-line chords.
 # These variables determine the scale and vertical offset of each note in the chord.
-COMPACTCHORDSCALE = {2: 0.63, 3: 0.46, 4: 0.36}
+COMPACTCHORDSCALE = {2: 0.8, 3: 0.6, 4: 0.5}
 COMPACTCHORDPOSITION = {
-    2: [440, -390],
-    3: [600, 80, -440],
-    4: [700, 310, -80, -470],
+    2: [600, -200],
+    3: [750, 200, -350],
+    4: [850, 400, -50, -500],
 }
 
 
