@@ -109,9 +109,10 @@ createBasicCharacter('0029','slurRight','slurRight')
 createBasicCharacter('0048','fermata','fermata')#H
 createBasicCharacter('0054','trill','trill')#T
 createBasicCharacter('0074','tremolo','tremolo')#t
-createBasicCharacter('007b','arpeggioLeft','arpeggio') #{
-arpeggioRight = font.createChar(int('007d', 16), 'arpeggioRight') #}, implemented as a reflected version of the { glyph.
-arpeggioRight.addReference('arpeggioLeft', (-1,0,0,1,MONOSPACEWIDTH,0))
+createBasicCharacter('0072','arpeggio','arpeggio')#r
+createBasicCharacter('007b','curlyLeft','curlyBrace') #{
+arpeggioRight = font.createChar(int('007d', 16), 'curlyRight') #}, implemented as a reflected version of the { glyph.
+arpeggioRight.addReference('curlyLeft', (-1,0,0,1,MONOSPACEWIDTH,0))
 
 spaceChar = font.createChar(32, 'space')
 spaceChar.width = SPACEWIDTH
@@ -304,8 +305,8 @@ for char in font.glyphs():
 
 #%% SECTION FOUR - Compact single-line chords using contextual GSUB Lookup Tables.
 # This is new to version 3 of the font. 
-# If 2-4 notes are written between square brackets, they will be stacked and scaled down to fit in a single line.
-# Examples: [123] [1,3,,] [7'52]
+# If 2-4 notes are written between curly brackets, they will be stacked and scaled down to fit in a single line.
+# Examples: {123} {1,3,,} {7'52}
 
 chordAtoms = []
 for accident in ["", "sharp", "flat", "natural"]:
@@ -359,21 +360,10 @@ addChordSlotLookup('graceNote',         'grace',    3, 1, advances=True, include
 hiddenChordBracket = font.createChar(-1, 'hiddenChordBracket')
 hiddenChordBracket.width = 0
 
-arpeggioChordBracket = font.createChar(-1, 'arpeggioChordBracket')
-importAndCleanOutlines(f'{INPUTFOLDER}/arpeggio-bar.svg', arpeggioChordBracket)
-arpeggioChordBracket.width = 0
-
 font.addLookup('chordBracketsLookup', 'gsub_single', None, (),)
 font.addLookupSubtable('chordBracketsLookup', 'chordBracketsSubtable')
-font['tupletLeft'].addPosSub('chordBracketsSubtable', 'hiddenChordBracket')
-font['tupletRight'].addPosSub('chordBracketsSubtable', 'hiddenChordBracket')
-font['arpeggioLeft'].addPosSub('chordBracketsSubtable', 'arpeggioChordBracket')
-font['arpeggioRight'].addPosSub('chordBracketsSubtable', 'hiddenChordBracket')
-
-# And here's a second little snippet so that {1} renders as a grace note (shrunken and elevated)
-font.addLookup('hideArpeggioLookup', 'gsub_single', None, (),)
-font.addLookupSubtable('hideArpeggioLookup', 'hideArpeggioSubtable')
-font['arpeggioLeft'].addPosSub('hideArpeggioSubtable', 'hiddenChordBracket')
+font['curlyLeft'].addPosSub('chordBracketsSubtable', 'hiddenChordBracket')
+font['curlyRight'].addPosSub('chordBracketsSubtable', 'hiddenChordBracket')
 
 
 # This block strings together the above lookup rules 
@@ -391,33 +381,33 @@ chordAtomCoverageStringWithUnderlines = '[' + ' '.join(chordAtomsWithUnderlines)
 
 font.addContextualSubtable(
     'chordContextualLookup', 'quadChordCL', 'coverage',
-    f'''[tupletLeft arpeggioLeft] @<chordBracketsLookup>
+    f'''[curlyLeft] @<chordBracketsLookup>
         {chordAtomCoverageString} @<quadChordTop>
         {chordAtomCoverageString} @<quadChordUpperMid>
         {chordAtomCoverageString} @<quadChordLowerMid>
         {chordAtomCoverageString} @<quadChordBottom>
-        [tupletRight arpeggioRight] @<chordBracketsLookup>'''
+        [curlyRight] @<chordBracketsLookup>'''
 )
 font.addContextualSubtable(
     'chordContextualLookup', 'tripleChordCL', 'coverage',
-    f'''[tupletLeft arpeggioLeft] @<chordBracketsLookup>
+    f'''[curlyLeft] @<chordBracketsLookup>
         {chordAtomCoverageString} @<tripleChordTop>
         {chordAtomCoverageString} @<tripleChordMiddle>
         {chordAtomCoverageString} @<tripleChordBottom>
-        [tupletRight arpeggioRight] @<chordBracketsLookup>''',
+        [curlyRight] @<chordBracketsLookup>''',
 )
 font.addContextualSubtable(
     'chordContextualLookup', 'doubleChordCL', 'coverage',
-    f'''[tupletLeft arpeggioLeft] @<chordBracketsLookup>
+    f'''[curlyLeft] @<chordBracketsLookup>
         {chordAtomCoverageString} @<doubleChordTop>
         {chordAtomCoverageStringWithUnderlines} @<doubleChordBottom>
-        [tupletRight arpeggioRight] @<chordBracketsLookup>''',
+        [curlyRight] @<chordBracketsLookup>''',
 )
 font.addContextualSubtable(
     'chordContextualLookup', 'graceChordCL', 'coverage',
-    f'''[arpeggioLeft] @<hideArpeggioLookup>
+    f'''[curlyLeft] @<chordBracketsLookup>
         {chordAtomCoverageStringWithUnderlines} @<graceNote>
-        [arpeggioRight] @<chordBracketsLookup>''',
+        [curlyRight] @<chordBracketsLookup>''',
 )
 
 
