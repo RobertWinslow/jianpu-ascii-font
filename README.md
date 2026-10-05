@@ -42,7 +42,7 @@ Below is a list of jianpu features implemented in this font and how to use them.
 
 ### Timing
 - Underline a note either with a `q` (for 'quaver') *before* the note, or a slash `/` *after* it. This halves its length to an eighth note.
-- Double-underline a note with an `s` (for 'quaver') *before* it, or two slashes `//` *after* it. This halves the length again to a sixteenth note.
+- Double-underline a note with an `s` (for 'semiquaver') *before* it, or two slashes `//` *after* it. This halves the length again to a sixteenth note.
     - If using `/`s together with octave shifts, the order of the modifier characters doesn't matter. They all just come after the digit. But stylistically, the octave marks come before the slashes, to make things consistent with other notational systems.
     - Note that the symbols `0`, `x`, `b`, `#` can be underlined in the same way notes can. For rests `0` and beats `x`, this conveys timing information. For accidentals, it's purely aesthetic.
 
@@ -90,16 +90,37 @@ Below is a list of jianpu features implemented in this font and how to use them.
 - `H` is a fermata symbol
 - `T` is a trill symbol.
 - lowercase `t` is a tremolo symbol.
-- a curly brace `{` is used for an arpeggio symbol. 
-<!-- And } is the same symbol but mirrored-->
-<!-- The next version will overload {} to serve multiple purposes. -->
+- an  `r` is used for an arpeggio symbol. *(New in v3)*
 
 <pre>
    T H
-|1 2 3 4t|{5 6 7  |
+|1 2 3 4t|r5 6 7  |
 </pre>
 
 ![An illustration of some special symbols, including fermata, trill, etc.](https://robertwinslow.github.io/jianpu-ascii-font/examples/img/jianpuAccents.PNG)
+
+
+### Inline Chords and Grace Notes  *(New in v3)*
+
+The intended method for rendering chords is to use multiple lines of text,
+and to manually align the notes which are played concurrently.
+But for pieces with only a few chords, you can use curly braces `{}`
+to render stacked chords.
+
+<pre>
+|1 {12,,} {1'2'3'} {1'234,,}|5{6}7/7/{7//,,}{71/,,}{71/,,}|
+</pre>
+
+![Inline chords and grace notes, including octave dots and duration underlines.](examples/img/jianpuInlineChords.PNG)
+
+A "chord" with only one note is rendered as a grace note.
+You can add duration markers to grace notes 
+and to the bottom note in a two-note chord.
+(Duration markers on other chord components are disabled.)
+
+These inline chords rely on contextual substitution tables and may not work reliably in all software.
+
+
 
 
 
@@ -131,8 +152,8 @@ and then installed like any other font.
 
 There's also a [COLRv0 version of the font](https://github.com/RobertWinslow/jianpu-ascii-font/blob/main/colrJianpu.ttf),
 which displays notes in different colors.
-This was made mostly just to see whether I could, is a bit glitchier, and works in fewer applications,
-though it should at least work in every modern internet browser.
+This was made mostly just to see whether I could, is a bit glitchier, works in fewer applications, and is missing some features.
+It should at least work in every modern internet browser.
 
 <!-- TODO: Update color version to latest version. -->
 
