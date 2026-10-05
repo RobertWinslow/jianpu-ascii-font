@@ -41,14 +41,21 @@ MONOSPACEWIDTH = 600
 # If the following parameter is set to a positive integer, a blank 'space' character is included in the font.
 SPACEWIDTH = MONOSPACEWIDTH
 
-# The following variables are for single-line chords.
+# The following variables are for single-line chords, which are typed using curly brackets
 # These variables determine the scale and vertical offset of each note in the chord.
-COMPACTCHORDSCALE = {2: 1, 3: 0.7, 4: 0.5}
+# The scale and position for a chord of length "1" are used for grace notes (a small, elevated note).
+# The other values used for 2 notes stacked on top of each other, 3 notes stacked, and 4 notes stacked.
+COMPACTCHORDSCALE = {1: 0.7, 2: 1, 3: 0.7, 4: 0.5}
 COMPACTCHORDPOSITION = {
+    1: [350],
     2: [850, 0],
     3: [950, 350, -250],
     4: [1050, 600, 150, -300],
 }
+# And these determine how much the cursor moves "forward" after each piece of the chord when editing the text.
+# A certain amount is allocated to each of the curly brackets, and the rest is split across the notes in the chord.
+COMPACTCHORDBRACKETWIDTH = 120
+assert (MONOSPACEWIDTH - 2*COMPACTCHORDBRACKETWIDTH) % 12 == 0, "MONOSPACEWIDTH minus COMPACTCHORDBRACKETWIDTH must be divisible by 12  to prevent drifting."
 
 
 
@@ -322,43 +329,46 @@ for underline in ['','Quaver','Semiquaver']:
 
 
 # This block creates a lookup table for each shrunken position that a note can occupy within a chord.
-def addChordSlotLookup(lookupName, glyphSuffix, chordCount, yPosition, advances=False, includesUnderlines=False):
+def addChordSlotLookup(lookupName, glyphSuffix, chordCount, yPosition, includesUnderlines=False):
     font.addLookup(lookupName, 'gsub_single', None, ())
     subtableName = lookupName + 'Subtable'
     font.addLookupSubtable(lookupName, subtableName)
 
     scale   = COMPACTCHORDSCALE[chordCount]
     yOffset = COMPACTCHORDPOSITION[chordCount][yPosition]
-    xOffset = MONOSPACEWIDTH * (1 - scale) / 2
+    xOffset = MONOSPACEWIDTH * (1 - scale) / 2 
+
+    advance = round((MONOSPACEWIDTH -  2*COMPACTCHORDBRACKETWIDTH) / chordCount)
+    xOffset = xOffset - COMPACTCHORDBRACKETWIDTH - advance * yPosition
 
     atomList = chordAtomsWithUnderlines if includesUnderlines else chordAtoms
     for atomName in atomList:
         positionedName = atomName + '_' + glyphSuffix
         positionedGlyph = font.createChar(-1, positionedName)
         positionedGlyph.addReference(atomName, (scale,0,0,scale,xOffset,yOffset))
-        positionedGlyph.width = MONOSPACEWIDTH if advances else 0
+        positionedGlyph.width = advance
         font[atomName].addPosSub(subtableName, positionedName)
     return lookupName
 
 addChordSlotLookup('quadChordTop',      'c4Top',    4, 0,)
 addChordSlotLookup('quadChordUpperMid', 'c4Upper',  4, 1,)
 addChordSlotLookup('quadChordLowerMid', 'c4Lower',  4, 2,)
-addChordSlotLookup('quadChordBottom',   'c4Bottom', 4, 3, advances=True)
+addChordSlotLookup('quadChordBottom',   'c4Bottom', 4, 3,)
 
 addChordSlotLookup('tripleChordTop',    'c3Top',    3, 0,)
 addChordSlotLookup('tripleChordMiddle', 'c3Middle', 3, 1,)
-addChordSlotLookup('tripleChordBottom', 'c3Bottom', 3, 2, advances=True)
+addChordSlotLookup('tripleChordBottom', 'c3Bottom', 3, 2,)
 
 addChordSlotLookup('doubleChordTop',    'c2Top',    2, 0,)
-addChordSlotLookup('doubleChordBottom', 'c2Bottom', 2, 1, advances=True, includesUnderlines=True)
+addChordSlotLookup('doubleChordBottom', 'c2Bottom', 2, 1, includesUnderlines=True)
 
-addChordSlotLookup('graceNote',         'grace',    3, 1, advances=True, includesUnderlines=True)
+addChordSlotLookup('graceNote',         'grace',    1, 0, includesUnderlines=True)
 
 
 
 # This mystical incantation creates a zero-width character to hide the brackets around chords.
 hiddenChordBracket = font.createChar(-1, 'hiddenChordBracket')
-hiddenChordBracket.width = 0
+hiddenChordBracket.width = COMPACTCHORDBRACKETWIDTH
 
 font.addLookup('chordBracketsLookup', 'gsub_single', None, (),)
 font.addLookupSubtable('chordBracketsLookup', 'chordBracketsSubtable')
